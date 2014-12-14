@@ -1,0 +1,67 @@
+#map { 
+   height: 720px; 
+}
+
+.fragmentPOI {
+	-webkit-animation: beat .5s infinite alternate;
+	-moz-animation: beat .5s infinite alternate;
+	-ms-animation: beat .5s infinite alternate;
+	-o-animation: beat .5s infinite alternate;
+	animation: beat .5s infinite alternate;
+
+	-webkit-transform-origin: center;
+	-moz-transform-origin: center;
+	-o-transform-origin: center;
+	-ms-transform-origin: center;
+	transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes "beat" {
+ to {
+    -webkit-transform: scale(1.4);
+   	-moz-transform: scale(1.4);
+   	-o-transform: scale(1.4);
+   	-ms-transform: scale(1.4);
+   	transform: scale(1.4);
+ }
+
+}
+
+@-moz-keyframes beat {
+ to {
+   -moz-transform: scale(1.4);
+   transform: scale(1.4);
+ }
+
+}
+
+@-webkit-keyframes "beat" {
+ to {
+   -webkit-transform: scale(1.4);
+   transform: scale(1.4);
+ }
+
+}
+
+@-ms-keyframes "beat" {
+ to {
+   -ms-transform: scale(1.4);
+   transform: scale(1.4);
+ }
+
+}
+
+@-o-keyframes "beat" {
+ to {
+   -o-transform: scale(1.4);
+   transform: scale(1.4);
+ }
+
+} 
+
+.ui-header{
+   border-radius: 0! important;
+   margin-bottom: 0! important;
+   background: #673ab7 !important
+}

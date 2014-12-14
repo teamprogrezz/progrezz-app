@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+  -->
+  <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
+
+    <!-- jQuery JS & CSS -->
+    <link rel="stylesheet" href="../jquery/jquery.mobile.icons-1.4.2.min.css" />
+    <link rel="stylesheet" href="../jquery/jquery.mobile-1.4.2.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/map.css" />
+    <link rel="stylesheet" type="text/css" href="../css/L.Control.Locate.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/ripples.min.css" rel="stylesheet">
+    <link href="../css/material-wfont.min.css" rel="stylesheet">
+    <link href="../css/messages.css" rel="stylesheet">
+    <link href="../jquery/jquery.mobile-1.4.2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+    <script src="../jquery/jquery-1.9.1.min.js"></script>
+    <script src="../jquery/jquery.mobile-1.4.2.min.js"></script>
+    <script src="../js/utilities/fastclick.js"></script>
+    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/ripples.min.js"></script>
+    <script src="../js/material.min.js"></script>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+    <script src="../js/plugins/L.Control.Locate.min.js"></script>
+
+    <script type="text/javascript" src="../js/controllers/incompleteLocation.js"></script>
+
+  </head>
+  <body onload="initFastButtons();" class="ui-mobile-viewport ui-overlay-a">
+    <span id="fastclick">
+
+      <div>
+        <div data-role="header" class="navbar navbar-fixed-top navbar-material-deep-purple">
+            <div class="navbar-header text-center">
+                <img src="../assets/img/progrezz.png" class="logo">
+            </div>
+            <div class="row button-bar">
+                <div class="col-xs-12 clear-margin clear-padding">
+                    <div class="btn-group btn-group-justified clear-margin clear-padding">
+                        <a href="views/map.html" class="btn btn-info btn-lg"><i class="mdi-action-room"></i> Fragmentos</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+      </div>
+
+
+
+</body>
+
+</html>
