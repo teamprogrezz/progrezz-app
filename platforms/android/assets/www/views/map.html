@@ -35,12 +35,10 @@
     <link href="../css/ripples.min.css" rel="stylesheet">
     <link href="../css/material-wfont.min.css" rel="stylesheet">
     <link href="../css/messages.css" rel="stylesheet">
-    <link href="../jquery/jquery.mobile-1.4.2.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 
     <script src="../jquery/jquery-1.9.1.min.js"></script>
-    <script src="../jquery/jquery.mobile-1.4.2.min.js"></script>
     <script src="../js/utilities/fastclick.js"></script>
     <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/ripples.min.js"></script>
@@ -58,21 +56,21 @@
     <span id="fastclick">
 
       <div>
-          <div data-role="header" class="navbar navbar-fixed-top navbar-material-deep-purple">
+        <div id="header" data-role="header" class="navbar navbar-fixed-top navbar-material-deep-purple">
             <div class="navbar-header text-center">
                 <img src="../assets/img/progrezz.png" class="logo">
             </div>
             <div class="row button-bar">
                 <div class="col-xs-12 clear-margin clear-padding">
                     <div class="btn-group btn-group-justified clear-margin clear-padding">
-                        <a href="views/map.html" class="btn btn-info btn-lg"><i class="mdi-maps-map"></i> Mapa</a>
+                        <a class="btn btn-info btn-lg"><i class="mdi-maps-map"></i> Mapa</a>
                     </div>
 
                 </div>
             </div>
         </div>
 
-        <div id="map"></div>
+        <div id="map" style="margin-top:-20px"></div>
         
       </div>
 

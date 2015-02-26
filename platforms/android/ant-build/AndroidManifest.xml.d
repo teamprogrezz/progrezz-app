@@ -1,2 +1,2 @@
-c:\Users\Paco\progrezzapp\platforms\android\ant-build\AndroidManifest.xml : \
-c:\Users\Paco\progrezzapp\platforms\android\AndroidManifest.xml \
+C:\Users\Cristo\Desktop\Progrezz\Client\platforms\android\ant-build\AndroidManifest.xml : \
+C:\Users\Cristo\Desktop\Progrezz\Client\platforms\android\AndroidManifest.xml \

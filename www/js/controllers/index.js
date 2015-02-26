@@ -188,7 +188,7 @@ $(document).ready(function(){
 });
 
 function init(){
-    $.material.init();
-    $.material.ripples(".list-group-item");
+    //$.material.init();
+    //$.material.ripples(".list-group-item");
     getUserMsg();
 }

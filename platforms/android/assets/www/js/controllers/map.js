@@ -24,15 +24,15 @@ $(document).ready(function(){
     /* ADJUTS HEIGHT MAP AUTOMATICALLY */
     //Definimos la función que calculara el alto
     function getRealContentHeight() {
-      var header = $.mobile.activePage.find("div[data-role='header']:visible");
+      /*var header = $.mobile.activePage.find("div[data-role='header']:visible");
       var footer = $.mobile.activePage.find("div[data-role='footer']:visible");
-      var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");
+      var content = $.mobile.activePage.find("div[data-role='content']:visible:visible");*/
+      var header = $("#header");
+
       var viewport_height = $(window).height();
 
-      var content_height = viewport_height - header.outerHeight() - footer.outerHeight();
-      if((content.outerHeight() - header.outerHeight() - footer.outerHeight()) <= viewport_height) {
-        content_height -= (content.outerHeight() - content.height());
-      } 
+      var content_height = viewport_height - header.outerHeight();
+
       return content_height;
     }
 
