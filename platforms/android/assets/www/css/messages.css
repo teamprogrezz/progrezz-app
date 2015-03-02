@@ -110,17 +110,4 @@ body { padding-top: 120px; }
    transform: scale(1.2);
  }
 
-} 
-
-.unlockButton {
-   text-align: center;
-   position: absolute;
-   top: 40%;
-}
-
-.unlockButtonPlus {
-   width: 100%;
-   padding-top: 1em;
-   padding-bottom: 1em;
-   font-size: 2em;
 }

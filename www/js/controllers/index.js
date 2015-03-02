@@ -93,7 +93,7 @@ function getUserMsg() {
 
 function renderMessages(messages){
    $.each(messages, function(key,message){
-       var content = "El mensaje esta fragmentado",
+       var content = "El mensaje está fragmentado",
        collapsible = "",
        arrayListGroup,
        percentage,
@@ -128,10 +128,10 @@ function renderMessages(messages){
             status_string = "Leido";
             status_class = "success";
             page_destiny = "messageComplete";
-            status_message = "Tu Misión ha sido realizada con Éxito";
+            status_message = "Tu Misión ha sido realizada con éxito";
             break;
          case "read":
-            status_string = "No leido";
+            status_string = "No leído";
             status_class = "warning labelBeat";
             page_destiny = "messageComplete"; 
             status_message = "Ya puedes Leer el Mensaje";
@@ -171,7 +171,7 @@ function renderMessages(messages){
                "</a>",
            "</div>"
        ];
-
+       
        var listGroup = arrayListGroup.join("");
        $(".messages").append($(listGroup));
    });
