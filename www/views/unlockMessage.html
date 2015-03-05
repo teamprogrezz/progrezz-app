@@ -1,57 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/ripples.min.css" rel="stylesheet">
-    <link href="../css/material-wfont.min.css" rel="stylesheet">
-    <link href="../css/unlockMessages.css" rel="stylesheet">
-
-    <script src="../jquery/jquery-1.9.1.min.js"></script>
-    <script src="../js/utilities/fastclick.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../cordova.js"></script>
-
-    <script type="text/javascript" src="../games/linksnake/js/linksnake.js"></script>
-    
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="width=device-width,height=device-height,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+  
+  <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../lib/bootstrap-material-design/css/material-wfont.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/unlockMessages.css" />
+  
+  <script type="text/javascript" src="../lib/jquery/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../lib/bootstrap-material-design/js/material.min.js"></script>
+  <script type="text/javascript" src="../js/utilities/fastclick.js"></script>
+  <script type="text/javascript" src="../games/linksnake/js/linksnake.js"></script>
+  <script type="text/javascript" src="../js/controllers/unlockMessage.js"></script>
+  
 </head>
 <body onload="initFastButtons();">
   <span id="fastclick">
     <div class="navbar navbar-fixed-top navbar-material-deep-purple">
-        <div class="navbar-header text-center">
-            <img src="../assets/img/progrezz.png" class="logo">
-        </div>
+      <div class="navbar-header text-center">
+        <img src="../assets/img/progrezz.png" class="logo">
+      </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12 unlockButton">
-              <button type="button" class="btn btn-material-deep-purple btn-lg unlockButtonPlus">DESBLOQUEAR</button>
-            </div>
+      <div class="row">
+        <div class="col-xs-12 unlockButton">
+          <button type="button" class="btn btn-material-deep-purple btn-lg unlockButtonPlus">DESBLOQUEAR</button>
         </div>
+      </div>
     </div>
   </span>
-  <script>
-    $(".unlockButtonPlus").click( function() {
-      
-      $("#fastclick").hide();
-      $("<canvas/>", {"id":"gameview"}).attr({
-        width: window.innerWidth,
-        height: window.innerHeight
-      }).appendTo("body");
-      init_link_snake(
-        function() { 
-          console.log("Victoria");
-        },
-        function() { 
-          console.log("Derrota");
-        },
-        "../games/linksnake/img",
-        3, 16, 10, 220, "gameview"
-      );
-    });
-  </script>
+
 </body>
   
 </html>

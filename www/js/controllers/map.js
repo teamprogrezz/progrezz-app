@@ -44,6 +44,8 @@ $(document).ready(function(){
     //Creamos una función que hará los ajustes en la pagina
     function redimensionarMapa(){
       mapa.height(getRealContentHeight() - ajuste);
+      mapa.attr("style", "margin-top:" + (getRealContentHeight() - ajuste));
+      style="margin-top:-20px"
     }
 
     //Añadimos el evento para que cada vez que se cambie de tamaño la pantalla se ejecute la funcion de ajuste

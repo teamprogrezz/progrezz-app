@@ -1,5 +1,5 @@
 canvas {
-  position: absolute;
+  position: fixed;
 }
 
 .progress{
