@@ -1,3 +1,6 @@
+
+var END_TIME = 1000 // Tiempo de espera tras finalización (ms)
+
 $(document).ready(function() {
   $(".unlockButtonPlus").click( function() {
     
@@ -8,14 +11,15 @@ $(document).ready(function() {
     
     /* Iniciar juego de desbloqueo */
     init_link_snake(
-      function() { // Victoria
+      function() { // Función de victoria
       
         console.log("Victoria"); // TODO Desbloquear mensaje
       },
-      function() { // Derrota
-      
-        $("#gameview").remove();
-        $("#fastclick").show();
+      function() { // Función de derrota
+        setTimeout(function() {
+          $("#gameview").remove();
+          $("#fastclick").show();
+        }, END_TIME);
       },
       5, 16, 10, 0, "gameview"
     );

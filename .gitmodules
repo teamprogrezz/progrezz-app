@@ -4,3 +4,6 @@
 [submodule "www/api-rest"]
 	path = www/api-rest
 	url = https://github.com/teamprogrezz/progrezz-client-api-rest
+[submodule "www/games/linksnake"]
+	path = www/games/linksnake
+	url = https://github.com/teamprogrezz/progrezz-minigames-linksnake
