@@ -1,0 +1,6 @@
+[submodule "progrezz-client-api-rest"]
+	path = progrezz-client-api-rest
+	url = https://github.com/teamprogrezz/progrezz-client-api-rest
+[submodule "www/api-rest"]
+	path = www/api-rest
+	url = https://github.com/teamprogrezz/progrezz-client-api-rest

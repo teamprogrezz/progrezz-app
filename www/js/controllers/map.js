@@ -66,8 +66,3 @@ function addPOI (map, latitude, longitude, title, message){
     className: 'fragmentPOI'
    }).bindPopup("<b>"+title+"</b><br>"+message).addTo(map);
 }
-
-
-
-
-

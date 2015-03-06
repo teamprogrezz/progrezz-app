@@ -2,19 +2,23 @@ $(document).ready(function() {
   $(".unlockButtonPlus").click( function() {
     
     $("#fastclick").hide();
-    $("<canvas/>", {"id":"gameview"}).attr({
-      width: window.innerWidth,
-      height: window.innerHeight
-    }).appendTo("body");
+    
+    /* Creación del canvas */
+    $("<canvas/>", {"id":"gameview"}).attr({ width: window.innerWidth, height: window.innerHeight }).appendTo("body");
+    
+    /* Iniciar juego de desbloqueo */
     init_link_snake(
-      function() { 
-        console.log("Victoria");
+      function() { // Victoria
+      
+        console.log("Victoria"); // TODO Desbloquear mensaje
       },
-      function() { 
-        console.log("Derrota");
+      function() { // Derrota
+      
+        $("#gameview").remove();
+        $("#fastclick").show();
       },
-      "../games/linksnake/img",
       5, 16, 10, 0, "gameview"
     );
+    
   })
 });
