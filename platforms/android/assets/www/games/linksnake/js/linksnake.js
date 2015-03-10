@@ -1,4 +1,9 @@
 
+// Espacio de nombres
+var LinkSnake = {};
+
+(function(namespace){
+
 // Códigos de teclas
 var KEY_NONE  = -1
 var KEY_UP    = 38
@@ -36,6 +41,8 @@ var start_x, start_y // Coordenadas de inicio de evento de toque
 var pos_x, pos_y // Columna y fila que esta seleccionando el jugador
 var head_selected = false; // Indica si el jugador está arrastrando la cabeza de la serpiente
 
+function LinkSnake() { }
+
 // Datos del juego
 var data_model = {
   fragments: [],
@@ -55,7 +62,7 @@ var data_model = {
   map: null
 };
 
-function init_link_snake(success_function, failure_function, path, num_fragments, rows, cols, speed, id_canvas) {
+namespace.init = function (success_function, failure_function, num_fragments, rows, cols, speed, id_canvas) {
   
   /* Establecimiento de funciones de victoria y derrota */
   success_game = success_function;
@@ -68,7 +75,7 @@ function init_link_snake(success_function, failure_function, path, num_fragments
     easy_version = true;
   
   /* Almacenando ruta relativa del directorio de imágenes */
-  img_path = path;
+  img_path = getImagesURL();
   
   /* Inicialización de datos y vista */
   init_data_model(num_fragments, rows, cols);
@@ -94,6 +101,13 @@ function init_link_snake(success_function, failure_function, path, num_fragments
     on_frame();
     setInterval(on_frame, frame_time);
   }
+}
+
+function getImagesURL() {
+  
+  var dir = document.querySelector('script[src$="linksnake.js"]').getAttribute('src');
+  var name = dir.split("/").pop();
+  return dir.replace("js/" + name, "img");
 }
 
 function init_data_model(num_fragments, rows, cols) {
@@ -190,6 +204,29 @@ function init_view(id_canvas) {
   
 }
 
+function destructor() {
+  
+  data_model = {
+    fragments: [],
+    player: {
+      init_x: 0,
+      init_y: 0,
+      x: 0,
+      y: 0,
+      first_movement: KEY_NONE,
+      last_movement: KEY_NONE,
+      last_select_movement: KEY_NONE,
+      alive: true,
+      last_fragment_picked: 0
+    },
+    rows: 0,
+    cols: 0,
+    map: null
+  };
+  
+  head_selected = false;
+}
+
 function reset() {
   
   data_model.player.first_movement = data_model.player.last_movement = data_model.player.last_select_movement = KEY_NONE;
@@ -209,11 +246,15 @@ function reset() {
   init_view();
 }
 
+function inside_board() {
+  return (pos_x >= 0 && pos_y >= 0 && pos_x < data_model.cols && pos_y < data_model.rows); 
+}
+
 function update_player() {
   
   if (easy_version) { // Versión fácil
     
-    if (head_selected) { // Si se está arrastrando la cabeza del cable
+    if (head_selected && inside_board()) { // Si se está arrastrando la cabeza del cable y se está dentro del tablero
       
       var movement = KEY_NONE; // Dirección del movimiento
       
@@ -462,6 +503,8 @@ function end_game(victory) {
     
     setTimeout(failure_game, END_TIME);
   }
+  
+  destructor();
 }
 
 function on_frame() {
@@ -603,3 +646,5 @@ function on_event_touch(evento) {
     
   }
 }
+
+})(LinkSnake);

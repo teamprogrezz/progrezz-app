@@ -53,6 +53,11 @@ body { padding-top: 120px; }
 	padding-bottom: 5px!important;
 }
 
+.row-picture{
+  float: left;
+}
+
+
 
 .labelBeat {
 	-webkit-animation: beat .5s infinite alternate;

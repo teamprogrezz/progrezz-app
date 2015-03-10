@@ -1,64 +1,45 @@
 #map { 
-   height: 720px; 
+   height: 720px;
+   position: relative;
 }
 
-.fragmentPOI {
-	-webkit-animation: beat .5s infinite alternate;
-	-moz-animation: beat .5s infinite alternate;
-	-ms-animation: beat .5s infinite alternate;
-	-o-animation: beat .5s infinite alternate;
-	animation: beat .5s infinite alternate;
-
-	-webkit-transform-origin: center;
-	-moz-transform-origin: center;
-	-o-transform-origin: center;
-	-ms-transform-origin: center;
-	transform-origin: center;
+.clear-margin{
+  margin: 0!important;
+}
+.clear-padding{
+  padding: 0!important;
 }
 
-/* Heart beat animation */
-@keyframes "beat" {
- to {
-    -webkit-transform: scale(1.4);
-   	-moz-transform: scale(1.4);
-   	-o-transform: scale(1.4);
-   	-ms-transform: scale(1.4);
-   	transform: scale(1.4);
- }
-
+.list-group{
+  border-bottom: #A6A6A6 solid 1px;
 }
 
-@-moz-keyframes beat {
- to {
-   -moz-transform: scale(1.4);
-   transform: scale(1.4);
- }
-
+.logo{
+  max-height: 3em;
+}
+.navbar-header{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.btn-group{
+  box-shadow: none;
 }
 
-@-webkit-keyframes "beat" {
- to {
-   -webkit-transform: scale(1.4);
-   transform: scale(1.4);
- }
 
+@media (min-width: 768px) {
+    .navbar-header {
+        float:none
+    }
 }
 
-@-ms-keyframes "beat" {
- to {
-   -ms-transform: scale(1.4);
-   transform: scale(1.4);
- }
-
+.label{
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
+  min-width: 7em;
 }
 
-@-o-keyframes "beat" {
- to {
-   -o-transform: scale(1.4);
-   transform: scale(1.4);
- }
-
-} 
+.status-container{
+  padding-bottom: 5px!important;
+}
 
 .ui-header{
    border-radius: 0! important;

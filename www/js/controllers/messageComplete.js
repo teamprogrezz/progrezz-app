@@ -1,10 +1,13 @@
 $(document).ready(function () {
   
-  // TODO Mostrar mensaje de verdad
-  var response = {id: '1', content: 'My Cool Message' };
+  var msg_uuid = LocalStorage.getSelectedMessageUUID();
+  var status = LocalStorage.getCompletedMessageStatus(msg_uuid);      
+  var content = LocalStorage.getCompletedMessageContent(msg_uuid);
   
-  msg_id = (parseInt(response.id)+10000).toString(32).toUpperCase();
-  
-  $(".panel-title").html('Transmisión #' + msg_id);
-  $(".panel-body").html(response.content);
+  if (status == "unread")
+    ServerRequest.userChangeMessageStatus(msg_uuid, "read", function() {});
+    
+  $(".panel-title").html('Mensaje #' + shortenID(msg_uuid));
+  $(".panel-body").html(content);
+
 });
