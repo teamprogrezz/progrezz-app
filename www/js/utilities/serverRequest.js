@@ -30,7 +30,7 @@ var ServerRequest = {};
   }
   
   namespace.userNearbyMessageFragments = function(onComplete, onError) {
-    //TODO Completar esta función, a ver que necesita y esas cosas
+    
     'use strict';
         
     var request = new RESTRequest();

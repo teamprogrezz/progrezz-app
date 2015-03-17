@@ -74,11 +74,13 @@ function getRealContentHeight() {
 }
 
 // Adición de un fragmento al mapa
+// TODO Añadir los colores como variables en algun fichero
 function addPOI (map, latitude, longitude, title, message){
   
   L.circleMarker([latitude, longitude], {
     color: '#f70',
     fillColor: '#fb0',
     fillOpacity: 0.8,
+    weight: 15
   }).bindPopup("<b>"+title+"</b><br>"+message).addTo(map);
 }

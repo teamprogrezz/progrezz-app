@@ -4,3 +4,6 @@
 [submodule "www/games/linksnake"]
 	path = www/games/linksnake
 	url = https://github.com/teamprogrezz/progrezz-minigames-linksnake
+[submodule "www/api-websocket"]
+	path = www/api-websocket
+	url = https://github.com/teamprogrezz/progrezz-client-api-websocket
