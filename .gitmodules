@@ -1,9 +1,9 @@
-[submodule "www/api-rest"]
-	path = www/api-rest
+[submodule "public/api-rest"]
+	path = public/api-rest
 	url = https://github.com/teamprogrezz/progrezz-client-api-rest
-[submodule "www/games/linksnake"]
-	path = www/games/linksnake
+[submodule "public/games/linksnake"]
+	path = public/games/linksnake
 	url = https://github.com/teamprogrezz/progrezz-minigames-linksnake
-[submodule "www/api-websocket"]
-	path = www/api-websocket
+[submodule "public/api-websocket"]
+	path = public/api-websocket
 	url = https://github.com/teamprogrezz/progrezz-client-api-websocket

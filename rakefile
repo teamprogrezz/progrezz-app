@@ -1,0 +1,6 @@
+desc "Lanzar"
+task :run do
+  sh 'ruby main.rb'
+end
+
+task :default => ["run"]
