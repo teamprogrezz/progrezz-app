@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Test - AR Progrezz </title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+        
+    <link type="text/css" rel="stylesheet" href="css/global.css" >
+    
+    <script type="text/javascript" src="lib/three.js/three.min.js"></script>
+    <script type="text/javascript" src="lib/three.js/renderers/CanvasRenderer.js"></script>
+    <script type="text/javascript" src="lib/three.js/renderers/Projector.js"></script>
+    
+    <script type="text/javascript" src="js/ar-progrezz.js"></script>
+
+</head>
+
+<body>
+  <video id="video" style="position: absolute; left: 0px; top: 0px; z-index: -1;"></video>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      ARProgrezz.init();
+    });
+  </script>
+</body>
+
+</html>
+
