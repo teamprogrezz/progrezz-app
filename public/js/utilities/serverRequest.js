@@ -1,7 +1,7 @@
 var ServerRequest = {};
 (function(namespace) {
   
-  var SERVER_URL = "/dev/api/rest";
+  var SERVER_URL = "http://progrezz-server.herokuapp.com/dev/api/rest";
   RESTRequest.DEFAULT.REQUEST_URL = SERVER_URL;
   
   var DEFAULT_ERROR_FUNCTION = function(error) { 
