@@ -7,7 +7,7 @@ $(document).ready(function () {
   if (status == "unread")
     ServerRequest.userChangeMessageStatus(msg_uuid, "read", function() {});
     
-  $(".panel-title").html('Mensaje #' + shortenID(msg_uuid));
+  $(".panel-title").html('Mensaje #' + IDUtils.shortenID(msg_uuid));
   $(".panel-body").html(content);
 
 });

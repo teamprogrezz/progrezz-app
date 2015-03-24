@@ -80,7 +80,7 @@ function renderUserMessages(messages) {
       break;
     }
     
-    messageList.append(fillMessageTemplate(key, shortenID(key), page_destiny, status_class, status_string, status_message, "success", 100, message.message.total_fragments, message.message.total_fragments));
+    messageList.append(fillMessageTemplate(key, IDUtils.shortenID(key), page_destiny, status_class, status_string, status_message, "success", 100, message.message.total_fragments, message.message.total_fragments));
   });
 
   /* Añadiendo mensajes fragmentados */
@@ -88,7 +88,7 @@ function renderUserMessages(messages) {
     
     var progress_percentage = Math.round(message.fragments.length / message.message.total_fragments * 100);
     
-    messageList.append(fillMessageTemplate(key, shortenID(key), "incompleteLocation", "default", "Incompleto", "Localiza los fragmentos", "warning", progress_percentage, message.fragments.length, message.message.total_fragments));
+    messageList.append(fillMessageTemplate(key, IDUtils.shortenID(key), "incompleteLocation", "default", "Incompleto", "Localiza los fragmentos", "warning", progress_percentage, message.fragments.length, message.message.total_fragments));
   });
 
   /* Combinando y mostrando lista de mensajes */
