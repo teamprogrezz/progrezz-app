@@ -45,9 +45,8 @@ $(document).ready(function(){
   function waitingWebSocket() {
     
     if (websocket_opened) {
-      // Actualizando mapa e iniciando temporizador
+      // Iniciando actualización periódica del mapa
       updateMap();
-      setInterval(updateMap, UPDATE_DELAY);
     }
     else
       setTimeout(waitingWebSocket, WAIT_DELAY);
@@ -57,11 +56,11 @@ $(document).ready(function(){
   
 function updateMap() {
   
-  if (updating)
-    return;
-  updating = true;
-  // TODO Arreglar para que no pida la maldita geolocalización todo el rato
-  navigator.geolocation.getCurrentPosition(function(position) {
+  GeolocationUtils.startWatchPosition(function(position) {
+    
+    if (updating)
+      return;
+    updating = true;
     
     // Comprobación de actualización necesaria
     if (!first_update && (new Date().getTime()) - timer < MAX_TIME && GeolocationUtils.distanceTwoGeoPoints(last_latitude, last_longitude, position.coords.latitude, position.coords.longitude) < MAX_DISTANCE) {
@@ -246,13 +245,5 @@ function updateMap() {
       updating = false;
     }
     
-  },
-  function() {
-    alert("No se ha podido reconocer la ubicación del dispositivo"); 
-  },
-  {
-    enableHighAccuracy: GeolocationUtils.Config.ENABLE_HIGH_ACCURACY,
-    timeout: GeolocationUtils.Config.TIMEOUT,
-    maximumAge: GeolocationUtils.Config.MAXIMUM_AGE
   });
 }

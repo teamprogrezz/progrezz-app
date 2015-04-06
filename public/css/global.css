@@ -1,0 +1,29 @@
+@media (min-width: 768px) {
+  .navbar-header {
+    float:none
+  }
+}
+
+.logo{
+  max-height: 3em;
+}
+
+.navbar-header{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.list-group{
+  border-bottom: #A6A6A6 solid 1px;
+}
+
+.btn-group{
+  box-shadow: none;
+}
+
+.clear-margin{
+  margin: 0!important;
+}
+.clear-padding{
+  padding: 0!important;
+}

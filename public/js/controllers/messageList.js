@@ -25,28 +25,29 @@ function getUserMessages() {
   });
 }
 
-function fillMessageTemplate(msg_uuid, msg_short_uuid, page_destiny, status_class, status_string, status_message, progress_class, progress_percentage, user_fragments_count, total_fragments) {
-  
-  //TODO Pasar esto a plantilla: utilizar Handlebars
-  return ["<div class='list-group'>",
-      "<a onClick='saveSelectedMessageUUID(this)' href=views/"+page_destiny+".html>",
-        "<div class='list-group-item'>",
-          "<div class='status-container col-xs-12 clear-margin clear-padding'><span class='col-xs-2 pull-right label label-"+status_class+"'>"+status_string+"</span></div>",
-          "<div class='row-content' style='width:100%;'>",
-            "<div class='row-picture'>",
-              "<img class='circle' src='assets/img/confidential.jpg' alt='icon'>",
-            "</div>",
-            "<span uuid='" + msg_uuid +"' class='message_uuid' class='list-group-item-heading'>Mensaje #",msg_short_uuid,"</span>",
-            "<p class='list-group-item-text'>"+status_message+"</p>",
-          "</div>",
-          "<div class='progress progress-striped active'>",
-            "<div class='progress-bar progress-bar-", progress_class, "' style='width: ",progress_percentage,"%;'>",
-              "<div class='progress-percentage'><span>",user_fragments_count, " / ", total_fragments,"</span></div>",
-            "</div>",
-          "</div>",
-        "</div>",
-      "</a>",
-    "</div>"];
+function getMessageTemplateContext() {
+ 
+  // Context of "message" template
+  return {
+    msg: {
+      uuid: null,
+      short_uuid: null
+    },
+    status: {
+      class: null,
+      string: null,
+      message: null
+    },
+    fragments: {
+      count: null,
+      total: null
+    },
+    progress: {
+      class: null,
+      percentage: null
+    },
+    page_destiny: null
+  }
 }
 
 function renderUserMessages(messages) {
@@ -57,38 +58,61 @@ function renderUserMessages(messages) {
   /* Añadiendo mensajes completados */
   $.each(messages.completed_messages, function(key, message) {
     
-    var status_string, status_class, status_message, page_destiny;
+    var context = getMessageTemplateContext();
     
     switch(message.status.status) {
       case "locked":
-        page_destiny = "unlockMessage";
-        status_string = "Bloqueado";
-        status_class = "danger labelBeat";
-        status_message = "Descifra el mensaje";
+        context.page_destiny = "unlockMessage";
+        context.status.string = "Bloqueado";
+        context.status.class = "danger beat-animation";
+        context.status.message = "Descifra el mensaje";
       break;
       case "unread":
-        page_destiny = "messageComplete";
-        status_string = "No leído";
-        status_class = "warning labelBeat";
-        status_message = "Lee el mensaje";
+        context.page_destiny = "messageComplete";
+        context.status.string = "No leído";
+        context.status.class = "warning beat-animation";
+        context.status.message = "Lee el mensaje";
       break;
       case "read":
-        page_destiny = "messageComplete";
-        status_string = "Leído";
-        status_class = "success";
-        status_message = "Misión completada";
+        context.page_destiny = "messageComplete";
+        context.status.string = "Leído";
+        context.status.class = "success";
+        context.status.message = "Misión completada";
       break;
     }
     
-    messageList.append(fillMessageTemplate(key, IDUtils.shortenID(key), page_destiny, status_class, status_string, status_message, "success", 100, message.message.total_fragments, message.message.total_fragments));
+    context.msg.uuid = key;
+    context.msg.short_uuid = IDUtils.shortenID(key);
+    
+    context.fragments.count = message.message.total_fragments;
+    context.fragments.total = message.message.total_fragments;
+    
+    context.progress.class = "success";
+    context.progress.percentage = 100;
+    
+    messageList.append(Handlebars.templates.message(context));
   });
 
   /* Añadiendo mensajes fragmentados */
   $.each(messages.fragmented_messages, function(key, message) {
     
-    var progress_percentage = Math.round(message.fragments.length / message.message.total_fragments * 100);
+    var context = getMessageTemplateContext();
     
-    messageList.append(fillMessageTemplate(key, IDUtils.shortenID(key), "incompleteLocation", "default", "Incompleto", "Localiza los fragmentos", "warning", progress_percentage, message.fragments.length, message.message.total_fragments));
+    context.page_destiny = "incompleteLocation";
+    context.status.string = "Incompleto";
+    context.status.class = "default";
+    context.status.message = "Localiza los fragmentos";
+        
+    context.msg.uuid = key;
+    context.msg.short_uuid = IDUtils.shortenID(key);
+    
+    context.fragments.count = message.fragments.length;
+    context.fragments.total = message.message.total_fragments;
+    
+    context.progress.class = "warning";
+    context.progress.percentage = Math.round(message.fragments.length / message.message.total_fragments * 100);
+    
+    messageList.append(Handlebars.templates.message(context));
   });
 
   /* Combinando y mostrando lista de mensajes */

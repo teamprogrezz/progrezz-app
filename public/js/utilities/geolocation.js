@@ -5,12 +5,27 @@ Number.prototype.toRad = function () {
 var GeolocationUtils = {};
 (function(namespace){
   
+  namespace.startWatchPosition = function(success) {
+    
+    navigator.geolocation.watchPosition(
+      success,
+      function() {
+        alert("No se ha podido reconocer la ubicación del dispositivo"); 
+      },
+      {
+        enableHighAccuracy: GeolocationUtils.Config.ENABLE_HIGH_ACCURACY,
+        timeout: GeolocationUtils.Config.TIMEOUT,
+        maximumAge: GeolocationUtils.Config.MAXIMUM_AGE
+      }
+    );
+  }
+  
   namespace.Config = {
     
     ENABLE_HIGH_ACCURACY: false,
-    TIMEOUT: 12000, // ms
+    TIMEOUT: 5000, // ms
     MAXIMUM_AGE: 2000 // ms
-  };
+  }
   
   namespace.distanceTwoGeoPoints = function(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radio medio de la tierra (km)
