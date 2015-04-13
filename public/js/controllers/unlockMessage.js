@@ -23,9 +23,8 @@ $(document).ready(function() {
         }, END_TIME);
         
         // Petición de desbloqueado de mensaje
-        ServerRequest.userChangeMessageStatus(
+        ServerRequest.userUnlockMessage(
           LocalStorage.getSelectedMessageUUID(),
-          "unread",
           function(response_json) {}
         );
         

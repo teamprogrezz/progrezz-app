@@ -68,8 +68,7 @@ var ServerRequest = {};
     request.request( request_json );
   }
   
-  // TODO Deprecated cambiar
-  namespace.userChangeMessageStatus = function(msg_uuid, status, onComplete, onError) {
+  namespace.userUnlockMessage = function(msg_uuid, onComplete, onError) {
     
     'use strict';
         
@@ -77,10 +76,29 @@ var ServerRequest = {};
     var request_json = RESTRequest.getTemplateRequest();
     
     // Tipo de petición y usuario
-    request_json.request.type = "user_change_message_status";
+    request_json.request.type = "user_unlock_message";
     request_json.request.data.user_id = "cristogr.93@gmail.com";
     request_json.request.data.msg_uuid = msg_uuid;
-    request_json.request.data.new_status = status;
+    
+    // Funciones de completado, error y finalización
+    request.onComplete = onComplete;
+    request.onError = onError || DEFAULT_ERROR_FUNCTION;
+    
+    // Efectuando la petición
+    request.request( request_json );   
+  }
+  
+  namespace.userReadMessage = function(msg_uuid, onComplete, onError) {
+    
+    'use strict';
+        
+    var request = new RESTRequest();
+    var request_json = RESTRequest.getTemplateRequest();
+    
+    // Tipo de petición y usuario
+    request_json.request.type = "user_read_message";
+    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.msg_uuid = msg_uuid;
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;

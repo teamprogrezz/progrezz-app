@@ -169,7 +169,7 @@ var MapTools = {};
   namespace.Vision.drawBindingTriangles = function(map, coords, seed, color) {
     
     if(!color)
-      var color = MapTools.Colors.getRandomSeedColor(seed);
+      color = MapTools.Colors.getRandomSeedColor(seed);
     
     var options = {
       color: color,
