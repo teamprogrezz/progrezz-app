@@ -16,39 +16,39 @@
 
 @keyframes "beat" {
   to {
-    -webkit-transform: scale(1.4);
-    -moz-transform: scale(1.4);
-    -o-transform: scale(1.4);
-    -ms-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
 @-moz-keyframes beat {
   to {
-    -moz-transform: scale(1.4);
-    transform: scale(1.4);
+    -moz-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
 @-webkit-keyframes "beat" {
   to {
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
 @-ms-keyframes "beat" {
   to {
-    -ms-transform: scale(1.4);
-    transform: scale(1.4);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 
 @-o-keyframes "beat" {
   to {
-    -o-transform: scale(1.4);
-    transform: scale(1.4);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
   }
 }
 

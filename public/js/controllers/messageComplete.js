@@ -5,9 +5,9 @@ $(document).ready(function () {
   var content = LocalStorage.getCompletedMessageContent(msg_uuid);
   
   if (status == "unread")
-    ServerRequest.userChangeMessageStatus(msg_uuid, "read", function() {});
+    ServerRequest.userReadMessage(msg_uuid, function() {});
     
-  $(".panel-title").html('Mensaje #' + shortenID(msg_uuid));
+  $(".panel-title").html('Mensaje #' + IDUtils.shortenID(msg_uuid));
   $(".panel-body").html(content);
 
 });

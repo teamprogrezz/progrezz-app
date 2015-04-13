@@ -1,6 +1,8 @@
 
 var END_TIME = 1000 // Tiempo de espera tras finalización (ms)
 
+// TODO Los parámetros del tamaño del tablero y dificultad, dependeran de: ¿dificultad del mensaje y/o nivel del jugador?
+
 $(document).ready(function() {
   $(".unlockButtonPlus").click( function() { // Evento de pulsación
     
@@ -21,9 +23,8 @@ $(document).ready(function() {
         }, END_TIME);
         
         // Petición de desbloqueado de mensaje
-        ServerRequest.userChangeMessageStatus(
-          LocalStorage.getSelectedMessageUUID,
-          "unread",
+        ServerRequest.userUnlockMessage(
+          LocalStorage.getSelectedMessageUUID(),
           function(response_json) {}
         );
         
@@ -33,8 +34,9 @@ $(document).ready(function() {
           $("#gameview").remove();
           $("#fastclick").show();
         }, END_TIME);
-      }, // TODO Poner estos parámetros globales, y tener en cuenta que el numero de fragmentos es el del mensaje
-      1, 16, 10, 0, "gameview"
+      },
+      LocalStorage.getCompletedMessageNumberFragments(LocalStorage.getSelectedMessageUUID()), 
+      16, 10, 0, "gameview"
     );
     
   })

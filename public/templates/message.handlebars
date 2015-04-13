@@ -1,0 +1,21 @@
+<div class='list-group'>
+  <a onClick='saveSelectedMessageUUID(this)' href='views/{{page_destiny}}.html'>
+    <div class='list-group-item'>
+      <div class='status-container col-xs-12 clear-margin clear-padding'>
+        <span class='col-xs-2 pull-right label label-{{status.class}}'>{{status.string}}</span>
+      </div>
+      <div class='row-content' style='width:100%;'>
+        <div class='row-picture'>
+          <img class='circle' src='assets/img/confidential.jpg' alt='icon'>
+        </div>
+        <span uuid='{{msg.uuid}}' class='message_uuid' class='list-group-item-heading'>Mensaje #{{msg.short_uuid}}</span>
+        <p class='list-group-item-text'>{{status.message}}</p>
+      </div>
+      <div class='progress progress-striped active'>
+        <div class='progress-bar progress-bar-{{progress.class}}' style='width: {{progress.percentage}}%;'>
+          <div class='progress-percentage'><span>{{fragments.count}}/{{fragments.total}}</span></div>
+        </div>
+      </div>
+    </div>
+  </a>
+</div>
