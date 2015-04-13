@@ -10,6 +10,7 @@
     <link type="text/css" rel="stylesheet" href="css/global.css" >
     
     <script type="text/javascript" src="lib/three.js/three.min.js"></script>
+    <script type="text/javascript" src="lib/three.js/DeviceOrientationControl.js"></script>
     <script type="text/javascript" src="lib/three.js/renderers/CanvasRenderer.js"></script>
     <script type="text/javascript" src="lib/three.js/renderers/Projector.js"></script>
     
@@ -18,11 +19,12 @@
 </head>
 
 <body>
-  <video id="video" style="position: absolute; left: 0px; top: 0px; z-index: -1;"></video>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      ARProgrezz.init();
-    });
+    var ARViewer = new ARProgrezz.Viewer();
+    ARViewer.onInit = function() {
+      ARViewer.addObject(0, 0);
+    };
+    ARViewer.initViewer();
   </script>
 </body>
 
