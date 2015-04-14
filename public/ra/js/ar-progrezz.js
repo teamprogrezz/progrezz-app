@@ -11,12 +11,12 @@ ARProgrezz.Flags = {
 ARProgrezz.Utils = {};
 (function(namespace){
   
-  var WAIT_DELAY = 100 // (ms)
-  
+  var WAIT_DELAY = 200 // (ms) Retardo de espera a Callbacks
+
   /* Función de espera de un Callback */
   namespace.waitCallback = function(obj, end_function) {
    
-    if (obj.flag == ARProgrezz.Flags.WAIT)
+    if (obj.flag != ARProgrezz.Flags.SUCCESS)
       setTimeout(namespace.waitCallback, WAIT_DELAY, obj, end_function)
     else
       end_function();
@@ -54,8 +54,9 @@ ARProgrezz.Viewer = function (settings) {
   this.viewerWidth = 0;
   this.viewerHeight = 0;
   
+  var ORIENTATION_DELAY = 300 // (ms) Retardo de espera para obtención de dimensiones del dispositivo tras cambio de orientación
   // TODO Cambiar el rango de visión, para que el máximo corresponda con el área del mensaje del jugador
-  var HUMAN_FIELD_OF_VIEW = 70; // (º)
+  var GAME_FOV = 60; // (º) Campo de visión
   var MIN_VISION = 0.1, MAX_VISION = 1000;
   var OBJECT_RADIUS = 1;
   
@@ -71,6 +72,36 @@ ARProgrezz.Viewer = function (settings) {
     
     for (s in sets)
       this.settings[s] = sets[s];
+  }
+  
+  /* Accediendo a la cámara trasera dependiendo del navegador */
+  function accessRearCamera(accessVideo) {
+    
+    if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1) { // En Chrome se utiliza por defecto la cámara frontal, por lo que se selecciona la trasera de forma manual
+      
+      MediaStreamTrack.getSources(function(sourceInfos) {
+        
+        // Seleccionando la cámara trasera del dispositivo
+        // TODO Probar en un móvil con doble cámara, y comprobar su correcto funcionamiento
+        var videoSource = null;
+        for (s in sourceInfos) {
+          if (sourceInfos[s].kind === 'video' && sourceInfos[s].facing != 'user') {
+            alert(JSON.stringify(sourceInfos[s])); // TODO Quitar alerta
+            videoSource = sourceInfos[s].id;
+          }
+        }
+        
+        accessVideo({video: {optional: [{sourceId: videoSource}]}, audio: false});
+      });
+    }
+    else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1) { // En Firefox el usuario decide que cámara compartir
+      accessVideo({video: true, audio: false});
+    }
+    else { // TODO Contemplar el caso de otros navegadores
+      alert (navigator.userAgent); // TODO Quitar alerta
+      accessVideo({video: true, audio: false});
+    }
+    
   }
   
   /* Inicialización del vídeo del visor */
@@ -101,17 +132,14 @@ ARProgrezz.Viewer = function (settings) {
           // Callback de carga del vídeo
           ar_video.onloadedmetadata = function() {
             
-            // Calculando tamaño del visor de acuerdo al vídeo
-            var viewer_ratio = Math.min(ar_video.width / ar_video.videoWidth, ar_video.height / ar_video.videoHeight);
-            real_height = ar_video.height();
-            scope.viewerWidth = viewer_ratio * ar_video.videoWidth;
-            scope.viewerHeight = viewer_ratio * ar_video.videoHeight;
-            
+            // Estableciendo el vídeo como cargado, requisito para continuar con el resto de inicializaciones
             video.flag = ARProgrezz.Flags.SUCCESS;
           }
           
+          // Añadiendo el vídeo al documento
           document.body.appendChild(ar_video);
           
+          // Conectando el vídeo con la información de la cámara
           ar_video.src = window.URL.createObjectURL(localMediaStream);
         },
         
@@ -128,32 +156,10 @@ ARProgrezz.Viewer = function (settings) {
     
     if (navigator.getUserMedia) {
       
-      // TODO Reestructurar en utilidades, llamando a una función, se empleará una función u otra
       // Acceso al vídeo según navegador
-      if (navigator.userAgent.toLowerCase().indexOf("chrome") != -1) { // En Chrome se utiliza por defecto la cámara frontal, por lo que se selecciona la trasera de forma manual
-        
-        MediaStreamTrack.getSources(function(sourceInfos) {
-          
-          // Seleccionando la cámara trasera del dispositivo
-          // TODO Probar en un móvil con doble cámara, y comprobar su correcto funcionamiento
-          var videoSource = null;
-          for (s in sourceInfos) {
-            if (sourceInfos[s].kind === 'video') {
-              alert(JSON.stringify(sourceInfos[s]));
-              videoSource = sourceInfos[s].id;
-            }
-          }
-          
-          accessVideo({video: {optional: [{sourceId: videoSource}]}, audio: false});
-        });
-      }
-      else if (navigator.userAgent.toLowerCase().indexOf("firefox") != -1) { // En Firefox el usuario decide que cámara compartir
-        accessVideo({video: true, audio: false});
-      }
-      else { // TODO Contemplar el caso de otros navegadores
-        alert (navigator.userAgent); // Quitar alerta
-      }
+      accessRearCamera(accessVideo);
       
+      // Esperando a que el vídeo se cargue correctamente
       ARProgrezz.Utils.waitCallback(video, onSuccess);
       
       return ARProgrezz.Flags.SUCCESS;
@@ -162,8 +168,6 @@ ARProgrezz.Viewer = function (settings) {
       alert("Error: No se soporta getUserMedia");
       
       ar_video = document.createElement("img");
-      ar_video.width = scope.viewerWidth = window.innerWidth;
-      ar_video.height = scope.viewerHeight = real_height = window.innerHeight;
       ar_video.setAttribute("style", "position: absolute; left: 0px; top: 0px; z-index: -1");
       ar_video.src = 'img/background_video.jpg';
       
@@ -181,7 +185,7 @@ ARProgrezz.Viewer = function (settings) {
     if (scope.settings.mode === 'normal') {
       
       // Creación de la cámara que representa la visión del jugador
-      ar_camera = new THREE.PerspectiveCamera(HUMAN_FIELD_OF_VIEW, window.innerWidth / window.innerHeight, MIN_VISION, MAX_VISION);
+      ar_camera = new THREE.PerspectiveCamera(GAME_FOV, window.innerWidth / window.innerHeight, MIN_VISION, MAX_VISION);
       
       // Creación del controlador de posición y orientación del jugador
       // TODO Cambiar por ARProgrezz.PositionControls, y añadir la geolocalización
@@ -224,8 +228,6 @@ ARProgrezz.Viewer = function (settings) {
     else // WebGL no soportado -> Renderizador Canvas
       ar_renderer = new THREE.CanvasRenderer(options);
     
-    ar_renderer.domElement.setAttribute("style", "display: block; margin: auto; padding-top: " + Math.trunc((real_height - scope.viewerHeight) / 2.0) + "px;");
-    ar_renderer.setSize(scope.viewerWidth, scope.viewerHeight); // TODO Cambiar por variables globales, y ajustar correctamente el tamaño
     ar_renderer.setClearColor( 0x000000, 0 );
     document.body.appendChild(ar_renderer.domElement);
     
@@ -254,6 +256,29 @@ ARProgrezz.Viewer = function (settings) {
     render();
   }
   
+  /* Redimensionar el visor */
+  function resizeViewer() {
+    setTimeout(function() {
+      
+      // Tamaño del vídeo
+      ar_video.width = window.innerWidth;
+      ar_video.height = real_height = window.innerHeight;
+      
+      // Calculando tamaño real del visor de acuerdo al vídeo
+      var viewer_ratio = Math.min(ar_video.width / ar_video.videoWidth, ar_video.height / ar_video.videoHeight);
+      real_height = ar_video.height;
+      scope.viewerWidth = viewer_ratio * ar_video.videoWidth;
+      scope.viewerHeight = viewer_ratio * ar_video.videoHeight;
+      
+      // Calculando relación de aspecto
+      ar_camera.aspect = scope.viewerWidth / scope.viewerHeight;
+      
+      // Tamaño y posición de la escena
+      ar_renderer.domElement.setAttribute("style", "display: block; margin: auto; padding-top: " + Math.trunc((real_height - scope.viewerHeight) / 2.0) + "px;");
+      ar_renderer.setSize(scope.viewerWidth, scope.viewerHeight);
+    }, ORIENTATION_DELAY)
+  }
+  
   /* Inicializar visor de realidad aumentada */
   this.initViewer = function(settings) {
     // TODO Comprobación de acceso al giroscopio, y a la geolocalización (y pedir permisos si fuera necesario)
@@ -264,8 +289,13 @@ ARProgrezz.Viewer = function (settings) {
     
     // Inicializar vídeo
     initVideo( function () {
+      
       // Inicializar realidad aumentada
       initAR( function() {
+          
+        // Evento de redimensionado
+        resizeViewer();
+        window.addEventListener( 'orientationchange', resizeViewer, false );
         
         // Iniciar actualizado de la escena
         playAnimation();
@@ -294,6 +324,8 @@ ARProgrezz.Viewer = function (settings) {
     
     var object = new THREE.Mesh(geometry, material);
     object.position.z = -5;
+    //object.position.x = ar_controls.getObjectX(latitude);
+    //object.position.z = ar_controls.getObjectX(longitude);
     
     objects.push(object);
     

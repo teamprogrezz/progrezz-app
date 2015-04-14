@@ -4,10 +4,18 @@
  *
  * W3C Device Orientation control (http://w3c.github.io/deviceorientation/spec-source-orientation.html)
  */
-
+Number.prototype.toRad = function () { 
+  return this * Math.PI / 180;
+}
 THREE.DeviceOrientationControls = function ( object ) {
 
   var scope = this;
+  this.first_time = true;
+  this.updating = false;
+  this.originLatitude = 0;
+  this.originLongitude = 0;
+  this.currentLatitude = 0;
+  this.currentLongitude = 0;
 
   this.object = object;
   this.object.rotation.reorder( "YXZ" );
@@ -54,16 +62,115 @@ THREE.DeviceOrientationControls = function ( object ) {
     }
 
   }();
+  
+ /*function distanceTwoLats (lat1, lat2) {
+    var R = 6371; // Radio medio de la tierra (km)
+    var dLat = (lat2 - lat1).toRad();
+    lat1 = lat1.toRad();
+    lat2 = lat2.toRad();
+    var a = Math.pow(Math.sin(dLat/2), 2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c * 1000; // Distancia (m)
+    return d;
+  }
+  
+  function distanceTwoLongs (lon1, lon2) {
+    var R = 6371; // Radio medio de la tierra (km)
+    var dLon = (lon2 - lon1).toRad();
+    var a = Math.pow(Math.sin(dLon/2), 2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c * 1000; // Distancia (m)
+    return d;
+  }
+  
+  function updateObject() {
+    
+    // TODO Revisar para cuando cruces el meridiano y ecuador y esas cosas, no liarla
+    if(scope.originLatitude < scope.currentLatitude)  {
+      object.position.setX(distanceTwoLats(scope.originLatitude, scope.currentLatitude));
+    }
+    else {
+      object.position.setX(-distanceTwoLats(scope.originLatitude, scope.currentLatitude));
+    }
+    if(scope.originLongitude < scope.currentLongitude)  {
+      object.position.setZ(distanceTwoLongs(scope.originLongitude, scope.currentLongitude));
+    }
+    else {
+      object.position.setZ(-distanceTwoLongs(scope.originLongitude, scope.currentLongitude));
+    }
+  }
+  
+  this.getObjectX = function(latitude) {
+    return distanceTwoLats(scope.originLatitude, latitude) * ((scope.originLatitude < latitude)? 1 : -1);
+  };
+  
+  this.getObjectZ = function(longitude) {
+    return distanceTwoLongs(scope.originLongitude, longitude) * ((scope.originLongitude < longitude)? 1 : -1);
+  };*/
 
   this.connect = function() {
+    
+    // TODO Hay que esperar a que se ejecute por primera vez
+    /*navigator.geolocation.watchPosition(
+      function(pos) {
+        alert("Aquí :D")
+        if (scope.updating)
+          return;
+        
+        scope.updating = true;
+        alert("Aquí :D")
+        if (scope.first_time) {
+          alert("Aquí :D")
+          scope.originLatitude = scope.currentLatitude = pos.coords.latitude;
+          scope.originLongitude = scope.currentLongitude = pos.coords.longitude;
+          scope.first_time = false;
+        }
+        else {
+          scope.currentLatitude = pos.coords.latitude;
+          scope.currentLongitude = pos.coords.longitude;
+        }
+        
+        updateObject();
+        
+        scope.updating = false;
+      },
+      function() {
+        alert("No se ha podido T.T"); 
+      }
+    );
+    
+    waitFor();
 
+    function data() {
+      
+      alert(scope.originLatitude + " " + scope.originLongitude + "\n" + scope.currentLatitude + " " + scope.currentLongitude + "\n" + object.position.x + " " + object.position.z);
+    }
+    
+    function cont() {
+      onScreenOrientationChangeEvent(); // run once on load
+  
+      window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
+      window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
+  
+      scope.enabled = true;
+      
+      setInterval(data ,5000);
+    }
+    
+    function waitFor() {
+      
+      if (scope.first_time)
+        setTimeout(waitFor, 400);
+      else
+        cont();
+    }*/
+    
     onScreenOrientationChangeEvent(); // run once on load
 
     window.addEventListener( 'orientationchange', onScreenOrientationChangeEvent, false );
     window.addEventListener( 'deviceorientation', onDeviceOrientationChangeEvent, false );
 
     scope.enabled = true;
-
   };
 
   this.disconnect = function() {
