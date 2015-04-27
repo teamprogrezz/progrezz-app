@@ -12,52 +12,28 @@
     <script src="lib/jasmine-2.2.0/jasmine.js" type="text/javascript"></script>
     <script src="lib/jasmine-2.2.0/jasmine-html.js" type="text/javascript"></script>
     <script src="lib/jasmine-2.2.0/boot.js" type="text/javascript"></script>
-
-    <!-- Source files -->
-    <script src="../js/index.js" type="text/javascript"></script>
-
-    <!-- Spec files -->
-    <script src="index.js" type="text/javascript"></script>
     
-    <script type="text/javascript">
-      (function() {
-        var jasmineEnv = jasmine.getEnv();
-        jasmineEnv.updateInterval = 1000;
-  
-        var htmlReporter = new jasmine.HtmlReporter({
-          env: jasmine.getEnv(),
-          queryString: new jasmine.QueryString({
-            getWindowLocation: function() { return window.location; }
-          }),
-          onRaiseExceptionsClick: function() { queryString.setParam("catch", !env.catchingExceptions()); },
-          getContainer: function() { return document.body; },
-          createElement: function() { return document.createElement.apply(document, arguments); },
-          createTextNode: function() { return document.createTextNode.apply(document, arguments); },
-          timer: new jasmine.Timer()
-        });
-  
-        jasmineEnv.addReporter(htmlReporter);
-  
-        jasmineEnv.specFilter = function(spec) {
-          return htmlReporter.specFilter(spec);
-        };
-  
-        var currentWindowOnload = window.onload;
-  
-        window.onload = function() {
-          if (currentWindowOnload) {
-            currentWindowOnload();
-          }
-          execJasmine();
-        };
-  
-        function execJasmine() {
-          jasmineEnv.execute();
-        }
-  
-      })();
-    </script>
-
+    <!-- Required files -->
+    <script src="../lib/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../api-rest/js/progrezz-api-rest.js" type="text/javascript"></script>
+    <script src="../api-websocket/js/progrezz-api-websocket.js" type="text/javascript"></script>
+    
+    <!-- Source files -->
+    <script src="../js/utilities/geolocation.js" type="text/javascript"></script>
+    <script src="../js/utilities/IDUtils.js" type="text/javascript"></script>
+    <script src="../js/utilities/localStorage.js" type="text/javascript"></script>
+    <script src="../js/utilities/mapTools.js" type="text/javascript"></script>
+    <script src="../js/utilities/serverRequest.js" type="text/javascript"></script>
+    <script src="../js/utilities/serverWebSocket.js" type="text/javascript"></script>
+    
+    <!-- Spec files -->
+    <script src="specs/GeolocationUtils.js" type="text/javascript"></script>
+    <script src="specs/IDUtils.js" type="text/javascript"></script>
+    <script src="specs/LocalStorage.js" type="text/javascript"></script>
+    <script src="specs/MapTools.js" type="text/javascript"></script>
+    <script src="specs/ServerRequest.js" type="text/javascript"></script>
+    <script src="specs/ServerWebSocket.js" type="text/javascript"></script>
+    
   </head>
     
   <body>
