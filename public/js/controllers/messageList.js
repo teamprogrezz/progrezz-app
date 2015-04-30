@@ -17,7 +17,7 @@ Array.prototype.append = function(list) {
 }
 
 function getUserMessages() {
-  // TODO Corregir que por algún motivo absurdo, el texto de las barras, parte del centro, en lugar de estar centrado, gracias -.-
+  
   // Realizando petición de solicitud de todos los mensajes
   ServerRequest.userMessages(function(response_json) {
     renderUserMessages(response_json.response.data);
