@@ -1,0 +1,19 @@
+body { 
+  padding-top: 200px;
+}
+
+#progrezz-logo{
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#progrezz-logo *{
+  vertical-align: middle;
+}
+
+#progrezz-logo span{
+  display: inline-block;
+  height: 100%;
+  width: 1px;
+}

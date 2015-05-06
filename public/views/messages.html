@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
+  
+  <link rel="icon" href="../assets/img/icons/icon.png" type="image/png">
+  
+  <link rel="stylesheet" type="text/css" href="../lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../lib/bootstrap-material-design/css/material-wfont.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/global.css">
+  <link rel="stylesheet" type="text/css" href="../css/messages.css">
+  <link rel="stylesheet" type="text/css" href="../css/animations.css">
+  
+  <script type="text/javascript" src="../lib/jquery/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript" src="../lib/jquery-jstorage/jstorage.min.js"></script>
+  <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../lib/handlebars/handlebars.runtime-v3.0.0.js"></script>
+  <script type="text/javascript" src="../templates/message.js"></script>
+  <script type="text/javascript" src="../js/utilities/fastclick.js"></script>
+  <script type="text/javascript" src="../api-rest/js/progrezz-api-rest.js"></script>
+  <script type="text/javascript" src="../js/utilities/serverRequest.js"></script>
+  <script type="text/javascript" src="../js/utilities/localStorage.js"></script>
+  <script type="text/javascript" src="../js/utilities/IDUtils.js"></script>
+  <script type="text/javascript" src="../js/controllers/messageList.js"></script>
+
+</head>
+<body onload="initFastButtons();">
+  <span id="fastclick">
+    <div class="navbar navbar-fixed-top navbar-material-deep-purple">
+      <div class="navbar-header text-center">
+        <img src="../assets/img/progrezz.png" class="logo">
+      </div>
+      <div id="button-menu" class="row button-bar">
+        <div class="col-xs-12 clear-margin clear-padding">
+            <div class="btn-group btn-group-justified clear-margin clear-padding">
+              <a class="btn btn-info btn-lg"><i class="mdi-content-mail"></i> Mensajes</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <ul class="nav nav-tabs nav-justified messages-list">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-content-drafts"></i> Mensajes Leídos <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu nav-justified" role="menu">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="messages"></div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav nav-tabs nav-justified messages-list">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-content-markunread"></i> Mensajes Sin Leer <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu nav-justified" role="menu">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="messages"></div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav nav-tabs nav-justified messages-list">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-action-lock"></i> Mensajes Completados <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu nav-justified" role="menu">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="messages"></div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav nav-tabs nav-justified messages-list">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-action-extension"></i> Mensajes Incompletos <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu nav-justified" role="menu">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="messages"></div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </span>
+</body>
+</html>
