@@ -36,7 +36,7 @@
       <div id="button-menu" class="row button-bar">
         <div class="col-xs-12 clear-margin clear-padding">
             <div class="btn-group btn-group-justified clear-margin clear-padding">
-              <a class="btn btn-info btn-lg"><i class="mdi-content-mail"></i> Mensajes</a>
+              <a href="messages.html" class="btn btn-info btn-lg"><i class="mdi-content-mail"></i> Mensajes</a>
             </div>
         </div>
       </div>
@@ -44,14 +44,14 @@
     <div class="container-fluid">
       <ul class="nav nav-tabs nav-justified messages-list">
         <li role="presentation" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-            <i class="mdi-content-drafts"></i> Mensajes Leídos <span class="caret"></span>
+          <a class="dropdown-toggle read-messages-text" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-content-drafts"></i>Mensajes Leídos (-) <span class="caret"></span>
           </a>
           <ul class="dropdown-menu nav-justified" role="menu">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12">
-                  <div class="messages"></div>
+                  <div class="read-messages"></div>
                 </div>
               </div>
             </div>
@@ -60,14 +60,14 @@
       </ul>
       <ul class="nav nav-tabs nav-justified messages-list">
         <li role="presentation" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-            <i class="mdi-content-markunread"></i> Mensajes Sin Leer <span class="caret"></span>
+          <a class="dropdown-toggle unread-messages-text" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-content-markunread"></i>Mensajes Sin Leer (-) <span class="caret"></span>
           </a>
           <ul class="dropdown-menu nav-justified" role="menu">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12">
-                  <div class="messages"></div>
+                  <div class="unread-messages"></div>
                 </div>
               </div>
             </div>
@@ -76,14 +76,14 @@
       </ul>
       <ul class="nav nav-tabs nav-justified messages-list">
         <li role="presentation" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-            <i class="mdi-action-lock"></i> Mensajes Completados <span class="caret"></span>
+          <a class="dropdown-toggle locked-messages-text" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-action-lock"></i>Mensajes Bloqueados (-) <span class="caret"></span>
           </a>
           <ul class="dropdown-menu nav-justified" role="menu">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12">
-                  <div class="messages"></div>
+                  <div class="locked-messages"></div>
                 </div>
               </div>
             </div>
@@ -92,14 +92,14 @@
       </ul>
       <ul class="nav nav-tabs nav-justified messages-list">
         <li role="presentation" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
-            <i class="mdi-action-extension"></i> Mensajes Incompletos <span class="caret"></span>
+          <a class="dropdown-toggle fragmented-messages-text" data-toggle="dropdown" href="#" role="button" aria-expanded="true">
+            <i class="mdi-action-extension"></i>Mensajes Incompletos (-) <span class="caret"></span>
           </a>
           <ul class="dropdown-menu nav-justified" role="menu">
             <div class="container-fluid">
               <div class="row">
                 <div class="col-xs-12">
-                  <div class="messages"></div>
+                  <div class="fragmented-messages"></div>
                 </div>
               </div>
             </div>
