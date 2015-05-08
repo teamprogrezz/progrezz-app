@@ -5,6 +5,10 @@
   }
 }
 
+.hidden{
+  visibility: hidden;
+}
+
 .logo{
   max-height: 3em;
 }

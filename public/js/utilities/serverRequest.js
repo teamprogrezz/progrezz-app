@@ -32,7 +32,7 @@ var ServerRequest = {};
   namespace.userNearbyMessageFragments = function(onComplete, onError) {
     
     'use strict';
-        
+    
     var request = new RESTRequest();
     var request_json = RESTRequest.getTemplateRequest();
     
@@ -71,7 +71,7 @@ var ServerRequest = {};
   namespace.userUnlockMessage = function(msg_uuid, onComplete, onError) {
     
     'use strict';
-        
+    
     var request = new RESTRequest();
     var request_json = RESTRequest.getTemplateRequest();
     
@@ -91,7 +91,7 @@ var ServerRequest = {};
   namespace.userReadMessage = function(msg_uuid, onComplete, onError) {
     
     'use strict';
-        
+    
     var request = new RESTRequest();
     var request_json = RESTRequest.getTemplateRequest();
     
@@ -111,7 +111,7 @@ var ServerRequest = {};
   namespace.userAllowedActions = function(onComplete, onError) {
     
     'use strict';
-        
+    
     var request = new RESTRequest();
     var request_json = RESTRequest.getTemplateRequest();
     
@@ -130,13 +130,50 @@ var ServerRequest = {};
   namespace.userProfile = function(onComplete, onError) {
     
     'use strict';
-        
+    
     var request = new RESTRequest();
     var request_json = RESTRequest.getTemplateRequest();
     
     // Tipo de petición y usuario
     request_json.request.type = "user_profile";
     request_json.request.data.user_id = "cristogr.93@gmail.com";
+    
+    // Funciones de completado, error y finalización
+    request.onComplete = onComplete;
+    request.onError = onError || DEFAULT_ERROR_FUNCTION;
+    
+    // Efectuando la petición
+    request.request( request_json );   
+  }
+  
+  namespace.userProfile = function(onComplete, onError) {
+    
+    'use strict';
+    
+    var request = new RESTRequest();
+    var request_json = RESTRequest.getTemplateRequest();
+    
+    // Tipo de petición y usuario
+    request_json.request.type = "user_profile";
+    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    
+    // Funciones de completado, error y finalización
+    request.onComplete = onComplete;
+    request.onError = onError || DEFAULT_ERROR_FUNCTION;
+    
+    // Efectuando la petición
+    request.request( request_json );   
+  }
+  
+  namespace.loggedIn = function(onComplete, onError) {
+    
+    'use strict';
+    
+    var request = new RESTRequest();
+    var request_json = RESTRequest.getTemplateRequest();
+    
+    // Tipo de petición y usuario
+    request_json.request.type = "user_who_am_i";
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;

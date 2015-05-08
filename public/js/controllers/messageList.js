@@ -135,10 +135,10 @@ function renderUserMessages(messages) {
   });
   
   /* Estableciendo el número de mensajes de cada tipo */
-  $(".read-messages-text").text("Mensajes Leídos (" + readMessagesList.length + ")");
-  $(".unread-messages-text").text("Mensajes No Leídos (" + unreadMessagesList.length + ")");
-  $(".locked-messages-text").text("Mensajes Bloqueados (" + lockedMessagesList.length + ")");
-  $(".fragmented-messages-text").text("Mensajes Incompletos (" + fragmentedMessagesList.length + ")");
+  $(".read-messages-count").text(readMessagesList.length);
+  $(".unread-messages-count").text(unreadMessagesList.length);
+  $(".locked-messages-count").text(lockedMessagesList.length);
+  $(".fragmented-messages-count").text(fragmentedMessagesList.length);
   
   /* Obteniendo contenido HTML a partir de las plantillas, ya ordenado por fecha */
   readMessagesList = transformMessagesList(readMessagesList);
