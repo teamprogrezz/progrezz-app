@@ -6,23 +6,24 @@
   <meta name="format-detection" content="telephone=no" />
   <meta content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes" name="viewport">
 
+  <link rel="icon" href="assets/img/icons/icon.png" type="image/png">
+  
+  <link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="lib/bootstrap-material-design/css/material-wfont.min.css">
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap-social/bootstrap-social.css">
   <link rel="stylesheet" type="text/css" href="css/global.css">
-  <link rel="stylesheet" type="text/css" href="css/messages.css">
-  <link rel="stylesheet" type="text/css" href="css/animations.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
   
   <script type="text/javascript" src="lib/jquery/jquery-1.9.1.min.js"></script>
   <script type="text/javascript" src="lib/jquery-jstorage/jstorage.min.js"></script>
   <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="lib/handlebars/handlebars.runtime-v3.0.0.js"></script>
-  <script type="text/javascript" src="templates/message.js"></script>
-  <script type="text/javascript" src="js/utilities/fastclick.js"></script>
+  <script type="text/javascript" src="lib/bootstrap-material-design/js/material.min.js"></script>
   <script type="text/javascript" src="api-rest/js/progrezz-api-rest.js"></script>
   <script type="text/javascript" src="js/utilities/serverRequest.js"></script>
-  <script type="text/javascript" src="js/utilities/localStorage.js"></script>
-  <script type="text/javascript" src="js/utilities/IDUtils.js"></script>
-  <script type="text/javascript" src="js/controllers/messageList.js"></script>
+  <script type="text/javascript" src="js/utilities/fastclick.js"></script>
+  <script type="text/javascript" src="js/controllers/index.js"></script>
+  
 
 </head>
 <body onload="initFastButtons();">
@@ -31,20 +32,43 @@
       <div class="navbar-header text-center">
         <img src="assets/img/progrezz.png" class="logo">
       </div>
-      <div class="row button-bar">
+      <div id="button-menu" class="row button-bar hidden">
         <div class="col-xs-12 clear-margin clear-padding">
           <div class="btn-group btn-group-justified clear-margin clear-padding">
-            <a href="views/map.html" class="btn btn-info btn-lg"><i class="mdi-maps-map"></i> Mapa</a>
-            <a href="javascript:void(0)" class="btn btn-warning btn-lg"><i class="mdi-action-visibility"></i> Escáner</a>
+            <a href="views/messages.html" class="btn btn-info btn-lg"><i class="mdi-content-mail"></i> Mensajes</a>
+            <a href="views/profile.html" class="btn btn-warning btn-lg"><i class="mdi-social-person"></i> Perfil</a>
+          </div>
+          <div class="btn-group btn-group-justified clear-margin clear-padding">
+            <a href="views/map.html" class="btn btn-success btn-lg"><i class="mdi-maps-map"></i> Mapa</a>
+            <a href="views/viewer.html" class="btn btn-danger btn-lg"><i class="mdi-action-visibility"></i> Escáner</a>
           </div>
         </div>
       </div>
     </div>
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="messages"></div>
+      <div id="authentication-panel">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <a class="btn btn-block btn-social btn-twitter" href="/auth/twitter">
+              <i class="fa fa-twitter"></i> Sign in with Twitter
+            </a>
+            <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook">
+              <i class="fa fa-facebook"></i> Sign in with Facebook
+            </a>
+            <a class="btn btn-block btn-social btn-google" href="/auth/google_oauth2">
+              <i class="fa fa-google"></i> Sign in with Google
+            </a>
+            <a class="btn btn-block btn-social btn-steam" href="/auth/steam">
+              <i class="fa fa-steam"></i> Sign in with Steam
+            </a>
+            <a class="btn btn-block btn-social btn-github" href="/auth/github">
+              <i class="fa fa-github"></i> Sign in with Github
+            </a>
+          </div>
         </div>
+      </div>
+      <div id="progrezz-logo" class="hidden">
+        <span></span><img src="assets/img/icons/icon.png" width="150px" height="150px" alt="Progrezz">
       </div>
     </div>
   </span>

@@ -1,6 +1,16 @@
 var LocalStorage = {};
 (function(namespace){
   
+  namespace.setUserID = function(user_id) {
+    
+    $.jStorage.set("user_id", user_id);
+  }
+  
+  namespace.getUserID = function(user_id) {
+    
+    return $.jStorage.get("user_id");
+  }
+  
   namespace.setSelectedMessageUUID = function(msg_uuid) {
     
     $.jStorage.set("selected_message_uuid", msg_uuid);

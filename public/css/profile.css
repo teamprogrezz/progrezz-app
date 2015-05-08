@@ -1,0 +1,27 @@
+body { 
+  padding-top: 110px;
+}
+
+.container-fluid {
+  margin: 25px;
+  border:solid;
+  border-color: #dddddd #aaaaaa #aaaaaa #dddddd;
+  border-width: 1px 2px 2px 1px;
+}
+
+.progress {
+	height: 20px!important;
+	margin-top: 1em;
+}
+
+.progress .progress-bar-striped {
+	background-color: #01DF3A;
+}
+
+.progress-percentage {
+  font-weight: bold;
+  color: black;
+  margin: auto;
+  position: absolute;
+  left: 0; right: 0;
+}

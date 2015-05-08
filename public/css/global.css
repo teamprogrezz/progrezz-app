@@ -1,7 +1,12 @@
+
 @media (min-width: 768px) {
   .navbar-header {
     float:none
   }
+}
+
+.hidden{
+  visibility: hidden;
 }
 
 .logo{
@@ -11,10 +16,15 @@
 .navbar-header{
   padding-bottom: 10px;
   padding-top: 10px;
+  border-bottom: #000000 solid 3px;
 }
 
-.list-group{
-  border-bottom: #A6A6A6 solid 1px;
+.navbar .btn{
+  border-color: #000000;
+  border-style: solid;
+  border-bottom-width: 3px;
+  border-left-width: 1.5px;
+  border-right-width: 1.5px;
 }
 
 .btn-group{

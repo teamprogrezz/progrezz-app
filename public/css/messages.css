@@ -2,26 +2,41 @@ body {
   padding-top: 120px;
 }
 
+.messages-list{
+  margin-bottom: 10px!important;
+}
+
+.list-group{
+  border-bottom: #A6A6A6 solid 1px;
+}
+
 .label{
   text-shadow: 1px 0px 1px rgba(0, 0, 0, 1);
   min-width: 7em;
 }
 
+.badge{
+  background-color: #0B615E;
+  color: white;
+}
+
 .status-container{
-  padding-bottom: 5px!important;
+  padding-top: 10px!important;
 }
 
 .row-picture{
   float: left;
 }
+
 .progress {
-	height:20px!important;
+	height: 20px!important;
 	margin-top: 1em;
 }
 
 .progress .progress-bar-warning, .label-warning {
 	background-color: #FFB122;
 }
+
 .progress-percentage {
   font-weight: bold;
   color: black;
@@ -29,4 +44,3 @@ body {
   position: absolute;
   left: 0; right: 0;
 }
-
