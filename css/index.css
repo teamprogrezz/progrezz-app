@@ -19,6 +19,13 @@ body {
   width: 1px;
 }
 
+#sign-out-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  margin: 0;
+}
+
 #authentication-panel {
   margin: 20px;
 }
