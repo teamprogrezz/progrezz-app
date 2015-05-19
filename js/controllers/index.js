@@ -11,6 +11,7 @@ $(document).ready(function(){
       $("#authentication-panel").addClass("hidden");
       $("#button-menu").removeClass("hidden");
       $("#progrezz-logo").removeClass("hidden");
+      $("#sign-out-button").removeClass("hidden");
     }
   });
 });

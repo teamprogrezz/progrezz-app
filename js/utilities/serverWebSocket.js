@@ -1,11 +1,12 @@
 var ServerWebSocket = {};
 (function(namespace) {
-  // TODO Cambiar el user_id para no hacerlo a mano, en todas las peticiones (autentificación)
-  var SERVER_WS_URL = "ws://progrezz-server.herokuapp.com/dev/api/websocket";
-  ProgrezzWS.DEFAULT.URL = SERVER_WS_URL;
   
+  var SERVER_WS_URL = (window.location.protocol === "https:"? "wss:" : "ws:") + "//" + window.location.host + "/dev/api/websocket";
+  console.log(SERVER_WS_URL);
+  ProgrezzWS.DEFAULT.URL = SERVER_WS_URL;
+
   var DEFAULT_ERROR_FUNCTION = function(error) { 
-    alert("Error al comunicarse con el servidor");
+    alert("Error: No se ha podido establecer comunicación con el servidor");
   }
 
   /* WebSocket */
@@ -32,7 +33,7 @@ var ServerWebSocket = {};
     var request_json = ProgrezzWS.getTemplateRequest();
     
     request_json.request.type = "user_update_geolocation";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     request_json.request.data.latitude = latitude;
     request_json.request.data.longitude = longitude;     
     

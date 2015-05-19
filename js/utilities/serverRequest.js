@@ -1,11 +1,11 @@
 var ServerRequest = {};
 (function(namespace) {
-  // TODO Cambiar el user_id para no hacerlo a mano, en todas las peticiones (autentificación)
-  var SERVER_REST_URL = "http://progrezz-server.herokuapp.com/dev/api/rest";
+  
+  var SERVER_REST_URL = "/dev/api/rest";
   RESTRequest.DEFAULT.REQUEST_URL = SERVER_REST_URL;
   
   var DEFAULT_ERROR_FUNCTION = function(error) { 
-    alert("Error al comunicarse con el servidor");
+    alert("Error: No se ha podido establecer comunicación con el servidor");
   }
 
   /* Peticiones REST */
@@ -19,7 +19,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_get_messages";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;
@@ -38,7 +38,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_get_nearby_message_fragments";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;
@@ -57,7 +57,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_get_collected_message_fragments";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     request_json.request.data.msg_uuid = msg_uuid;
     
     // Funciones de completado, error y finalización
@@ -77,7 +77,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_unlock_message";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     request_json.request.data.msg_uuid = msg_uuid;
     
     // Funciones de completado, error y finalización
@@ -97,7 +97,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_read_message";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     request_json.request.data.msg_uuid = msg_uuid;
     
     // Funciones de completado, error y finalización
@@ -117,7 +117,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_allowed_actions";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;
@@ -136,7 +136,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_profile";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;
@@ -155,7 +155,7 @@ var ServerRequest = {};
     
     // Tipo de petición y usuario
     request_json.request.type = "user_profile";
-    request_json.request.data.user_id = "cristogr.93@gmail.com";
+    request_json.request.data.user_id = LocalStorage.getUserID();
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;

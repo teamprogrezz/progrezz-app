@@ -19,7 +19,7 @@ $(document).ready(function() {
         console.log("Victoria");
         
         setTimeout(function() {
-          window.location.href = "../index.html";
+          window.location.href = "messages.html";
         }, END_TIME);
         
         // Petición de desbloqueado de mensaje
