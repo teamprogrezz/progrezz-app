@@ -12,9 +12,17 @@ $(document).ready(function(){
   
   ServerRequest.userAllowedActions(function(json_response) {
     
-    $(".message-duration").html(json_response.response.data.allowed_actions.write_message.duration);
-    $(".message-min-length").html(json_response.response.data.allowed_actions.write_message.min_length);
-    $(".message-max-length").html(json_response.response.data.allowed_actions.write_message.max_length);
+    if (json_response.response.data.allowed_actions.write_message) {
+      $(".message-duration").html(json_response.response.data.allowed_actions.write_message.duration);
+      $(".message-min-length").html(json_response.response.data.allowed_actions.write_message.min_length);
+      $(".message-max-length").html(json_response.response.data.allowed_actions.write_message.max_length);
+      $(".messages-allowed").html("Publicación permitida");
+      $(".messages-allowed").css('color', 'green');
+    }
+    else {
+      $(".messages-allowed").html("Publicación no permitida");
+      $(".messages-allowed").css('color', 'red');
+    }
     $(".vision-fragments").html(json_response.response.data.allowed_actions.search_nearby_fragments.radius * 1000);
     $(".accuracy-fragments").html(json_response.response.data.allowed_actions.collect_fragment.radius * 1000);
   });
