@@ -14,7 +14,6 @@ $(document).ready(function(){
     
     if (json_response.response.data.allowed_actions.write_message) {
       $(".message-duration").html(json_response.response.data.allowed_actions.write_message.duration);
-      $(".message-min-length").html(json_response.response.data.allowed_actions.write_message.min_length);
       $(".message-max-length").html(json_response.response.data.allowed_actions.write_message.max_length);
       $(".messages-allowed").html("Publicación permitida");
       $(".messages-allowed").css('color', 'green');
@@ -24,6 +23,7 @@ $(document).ready(function(){
       $(".messages-allowed").css('color', 'red');
     }
     $(".vision-fragments").html(json_response.response.data.allowed_actions.search_nearby_fragments.radius * 1000);
-    $(".accuracy-fragments").html(json_response.response.data.allowed_actions.collect_fragment.radius * 1000);
+    $(".accuracy-fragments").html(json_response.response.data.allowed_actions.search_nearby_fragments.noise.distance * 1000);
+    $(".collect-fragments").html(json_response.response.data.allowed_actions.collect_fragment.radius * 1000);
   });
 });
