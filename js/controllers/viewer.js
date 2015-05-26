@@ -77,7 +77,7 @@ function initViewer() {
                 type: 'basic',
                 onSelect: function() {
                   ServerRequest.collectFragment(key, function() {
-                    alert(">> Fragmento de " + content.message.author.author_alias + " Capturado <<");
+                    alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
                   });
                 },
                 collectable: true
@@ -86,7 +86,9 @@ function initViewer() {
             });
           };
           
-          ARViewer.initViewer(); // Iniciando el visor
+          ServerRequest.userAllowedActions(function(json_response) {
+            ARViewer.initViewer({range: json_response.response.data.allowed_actions.collect_fragment.radius * 1000}); // Iniciando el visor
+          });
         }
       );
     }
