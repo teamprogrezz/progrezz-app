@@ -1,16 +1,29 @@
 $(document).ready(function(){
   
   ServerRequest.userProfile(function(json_response) {
-    console.log(json_response.response.data.profile.info.alias);
-    console.log(json_response.response.data.profile.info.created_at);
-    console.log(json_response.response.data.profile.info.user_id);
-    console.log(json_response.response.data.profile.level.current_exp);
-    console.log(json_response.response.data.profile.level.current_level);
-    console.log(json_response.response.data.profile.level.next_level_exp);
     
     //$("#experience-bar").attr("aria-valuenow", json_response.response.data.profile.level.current_exp);
     //$("#experience-bar").attr("aria-valuemax", json_response.response.data.profile.level.next_level_exp);
+    $(".alias").html(json_response.response.data.profile.info.alias);
+    $(".level").html(json_response.response.data.profile.level.current_level);
     $("#experience-bar").css("width", Math.round((json_response.response.data.profile.level.current_exp / json_response.response.data.profile.level.next_level_exp) * 100) + "%");
     $(".progress-percentage").html(json_response.response.data.profile.level.current_exp + " / " + json_response.response.data.profile.level.next_level_exp + " (" + Math.round((json_response.response.data.profile.level.current_exp / json_response.response.data.profile.level.next_level_exp) * 100) + "%)");
+  });
+  
+  ServerRequest.userAllowedActions(function(json_response) {
+    
+    if (json_response.response.data.allowed_actions.write_message) {
+      $(".message-duration").html(json_response.response.data.allowed_actions.write_message.duration);
+      $(".message-max-length").html(json_response.response.data.allowed_actions.write_message.max_length);
+      $(".messages-allowed").html("Publicación permitida");
+      $(".messages-allowed").css('color', 'green');
+    }
+    else {
+      $(".messages-allowed").html("Publicación no permitida");
+      $(".messages-allowed").css('color', 'red');
+    }
+    $(".vision-fragments").html(json_response.response.data.allowed_actions.search_nearby_fragments.radius * 1000);
+    $(".accuracy-fragments").html(json_response.response.data.allowed_actions.search_nearby_fragments.noise.distance * 1000);
+    $(".collect-fragments").html(json_response.response.data.allowed_actions.collect_fragment.radius * 1000);
   });
 });
