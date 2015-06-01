@@ -13,4 +13,4 @@ Cliente de la aplicación web de Progrezz.
 - **1.0.0**: Resultado de las prácticas externas realizadas por el alumno Cristo González Rodríguez, para el Grado de Ingeniería Informática de la ETSII - ULL.
 
 ##Acceso al servidor
-- **Servidor de prueba**: [Client](www.socialmemorycompany.com:9292/pages/client/index.html).
+- **Servidor de prueba**: [Client](http://www.socialmemorycompany.com:9292/pages/client/index.html).
