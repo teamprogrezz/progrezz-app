@@ -55,7 +55,7 @@ function initViewer() {
           ARViewer.onInit = function() { // onInit del visor - Adición de los objetos
       alert("Visor inicializado");
             $.each(response_json.response.data.fragments.system_fragments, function(key, content) {
-              
+              alert("Recorriendo fragmento del sistema :D");
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
@@ -65,14 +65,14 @@ function initViewer() {
                   });
                 },
                 collectable: true
-              }
+              };
               alert("Añadiendo objeto del sistema");
               ARViewer.addObject(options);
               alert("Objeto añadido");
             });
             
             $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
-              
+              alert("Recorriendo fragmento de alguien :D");
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
@@ -82,7 +82,7 @@ function initViewer() {
                   });
                 },
                 collectable: true
-              }
+              };
               alert("Añadiendo objeto de alguien");
               ARViewer.addObject(options);
               alert("Objeto añadido");
