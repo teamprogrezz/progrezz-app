@@ -54,7 +54,7 @@ function initViewer() {
   alert("Solicitud de creación del visor enviada");
           ARViewer.onInit = function() { // onInit del visor - Adición de los objetos
       alert("Visor inicializado");
-      alert(response_json);
+      alert(JSON.stringify(response_json));
             $.each(response_json.response.data.fragments.system_fragments, function(key, content) {
               alert("Recorriendo fragmento del sistema :D");
               var options = {
