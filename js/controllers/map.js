@@ -152,33 +152,34 @@ function updateMap() {
 
     // Estructurar la información (coordenadas, mensaje y duplicado al que pertenecen) de los fragmentos
     function structureFragmentsInfo(fragments) {
-      
+      alert("Empezando a estructurar fragmentos");
       var info = {};
       
       $.each(fragments, function(key, content) {
-        
+        alert("Paso 1");
         // Comprobación de que el fragmento se encuentra dentro del círculo
         if (GeolocationUtils.distanceTwoGeoPoints(content.geolocation.latitude, content.geolocation.longitude, position.coords.latitude, position.coords.longitude) > MapTools.Vision.USER_RADIUS)
           return;
-        
+        alert("Paso 2");
         // UUID del mensaje, con el duplicado al que pertenece
         var message_id = content.message.message.uuid + "." + content.group_index;
-        
+        alert("Paso 3");
         // Si no existe ningún fragmento con el mismo mensaje y duplicado, se crea
         if (info[message_id] == null)
           info[message_id] = [[],[],[]];
-        
+        alert("Paso 4");
         // Se añade la información del fragmento a la lista del mismo mensaje
         var found = LocalStorage.fragmentAlreadyFound(content.message.message.uuid, content.fragment_index);
         if (found) // Se establecen las coordenadas, añadiendo ruido en función de si ha sido encontrado o no
           info[message_id][INDEX.COORDS].push([content.geolocation.latitude, content.geolocation.longitude]);
         else
           info[message_id][INDEX.COORDS].push(MapTools.Vision.getRandomNoiseCoords(content.geolocation.latitude, content.geolocation.longitude, key));
-        
+        alert("Paso 5");
         info[message_id][INDEX.FOUND].push(found);
         info[message_id][INDEX.FRAGMENT].push(content.fragment_index);
+        alert("Paso 6");
       });
-      
+      alert("Terminando con los fragmentos");
       return info;
     }
 
@@ -222,6 +223,7 @@ function updateMap() {
 alert("Empezando a localizar fragmentos");
       // Obtener coordenadas de los fragmentos, asociados al mensaje que pertenecen
       var system_messages = structureFragmentsInfo(fragments.system_fragments);
+      alert("Sistema terminados, ahora de usuarios");
       var user_messages = structureFragmentsInfo(fragments.user_fragments);
 alert("Empezando a dibujar fragmentos");
       // Dibujado de áreas de fragmentos, y polígonos
