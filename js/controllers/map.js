@@ -102,7 +102,7 @@ function updateMap() {
             function(response_json) {
               alert("Obtenidos mensajes cercanos");
               // Ubicar los fragmentos cercanos
-              alert(JSON.stringfy(response_json.response));
+              alert(JSON.stringify(response_json.response));
               locateFragments(response_json.response.data.fragments);
               alert("Fragmentos localizados");
               // Ubicar al usuario
