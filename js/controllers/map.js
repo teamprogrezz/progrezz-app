@@ -22,7 +22,7 @@ $(document).ready(function(){
   
   // Redimensionado del mapa
   MapTools.Utils.resizeMap();
-  
+  alert("Mapa creado :D");
   // Comprobación de que se soporta la geolocalización
   if (!("geolocation" in navigator)) {
     alert("Geolocalización no soportada");
@@ -48,8 +48,9 @@ $(document).ready(function(){
       // Iniciando actualización periódica del mapa
       updateMap();
     }
-    else
+    else {
       setTimeout(waitingWebSocket, WAIT_DELAY);
+    }
   }
 
 });
@@ -57,7 +58,7 @@ $(document).ready(function(){
 function updateMap() {
   
   GeolocationUtils.startWatchPosition(function(position) {
-    
+    alert("Obtenida geolocalización :D");
     if (updating)
       return;
     updating = true;
@@ -83,7 +84,7 @@ function updateMap() {
       position.coords.latitude,
       position.coords.longitude,
       function(event) { // onResponse
-        
+         alert("Localización del usuario actualizada");
         // Ubicar al usuario y los fragmentos
         locateObjects();
       }
@@ -93,19 +94,19 @@ function updateMap() {
     function locateObjects() {
       ServerRequest.userAllowedActions(
         function(response_json) {
-          
+           alert("Obtenidas acciones del usuario");
           MapTools.Vision.updateUserRange(response_json.response.data.allowed_actions.search_nearby_fragments.radius);
           MapTools.Vision.updateNoise(response_json.response.data.allowed_actions.search_nearby_fragments.noise);
           
           ServerRequest.userNearbyMessageFragments(
             function(response_json) {
-              
+              alert("Obtenidos mensajes cercanos");
               // Ubicar los fragmentos cercanos
               locateFragments(response_json.response.data.fragments);
-              
+              alert("Fragmentos localizados");
               // Ubicar al usuario
               locateUser();
-              
+              alert("Usuario ubicado");
               // Finalizando
               endUpdate();
             }
