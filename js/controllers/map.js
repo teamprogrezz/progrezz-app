@@ -98,11 +98,13 @@ function updateMap() {
           MapTools.Vision.updateUserRange(response_json.response.data.allowed_actions.search_nearby_fragments.radius);
           MapTools.Vision.updateNoise(response_json.response.data.allowed_actions.search_nearby_fragments.noise);
           
-          ServerRequest.userNearbyMessageFragments(
+          ServerRequest.userMessages(
             function(response_json) {
-              ServerRequest.userMessages(
+              
+              LocalStorage.setUserMessageList(response_json.response.data);
+              
+              ServerRequest.userNearbyMessageFragments(
                 function(response_json) {
-                  LocalStorage.setUserMessageList(response_json.response.data);
                   alert("Obtenidos mensajes cercanos");
                   // Ubicar los fragmentos cercanos
                   alert(JSON.stringify(response_json.response));
