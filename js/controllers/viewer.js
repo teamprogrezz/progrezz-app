@@ -49,14 +49,13 @@ function initViewer() {
       ServerRequest.userNearbyMessageFragments(
         
         function(response_json) {
-          alert("Respuesta de petición de mensajes");
-          var ARViewer = new ARProgrezz.Viewer(); // Construyendo el visor   
-  alert("Solicitud de creación del visor enviada");
+          
+          var ARViewer = new ARProgrezz.Viewer(); // Construyendo el visor
+          
           ARViewer.onInit = function() { // onInit del visor - Adición de los objetos
-      alert("Visor inicializado");
-      alert(JSON.stringify(response_json));
+            
             $.each(response_json.response.data.fragments.system_fragments, function(key, content) {
-              alert("Recorriendo fragmento del sistema :D");
+              
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
@@ -67,13 +66,12 @@ function initViewer() {
                 },
                 collectable: true
               };
-              alert("Añadiendo objeto del sistema");
+              
               ARViewer.addObject(options);
-              alert("Objeto añadido");
             });
             
             $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
-              alert("Recorriendo fragmento de alguien :D");
+              
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
@@ -84,17 +82,13 @@ function initViewer() {
                 },
                 collectable: true
               };
-              alert("Añadiendo objeto de alguien");
+              
               ARViewer.addObject(options);
-              alert("Objeto añadido");
             });
-            alert("Objetos añadidos");
           };
           
           ServerRequest.userAllowedActions(function(json_response) {
-            alert("Respuesta de acciones del usuario");
             ARViewer.initViewer({range: json_response.response.data.allowed_actions.collect_fragment.radius * 1000}); // Iniciando el visor
-            alert("Solicitud de inicialización del visor enviada");
           });
         }
       );
