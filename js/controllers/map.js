@@ -102,6 +102,7 @@ function updateMap() {
             function(response_json) {
               alert("Obtenidos mensajes cercanos");
               // Ubicar los fragmentos cercanos
+              alert(JSON.stringfy(response_json.response));
               locateFragments(response_json.response.data.fragments);
               alert("Fragmentos localizados");
               // Ubicar al usuario
@@ -218,11 +219,11 @@ function updateMap() {
 
     // Ubicar fragmentos en el mapa
     function locateFragments(fragments) {
-
+alert("Empezando a localizar fragmentos");
       // Obtener coordenadas de los fragmentos, asociados al mensaje que pertenecen
       var system_messages = structureFragmentsInfo(fragments.system_fragments);
       var user_messages = structureFragmentsInfo(fragments.user_fragments);
-
+alert("Empezando a dibujar fragmentos");
       // Dibujado de áreas de fragmentos, y polígonos
       drawFragments(system_messages, MapTools.Colors.SYSTEM_FRAGMENT_COLOR);
       drawFragments(user_messages, MapTools.Colors.USER_FRAGMENT_COLOR);
