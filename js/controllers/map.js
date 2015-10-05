@@ -68,8 +68,7 @@ function updateMap() {
       updating = false;
       return;
     }
-    alert("Actualizando: " + first_update);
-    alert("Coords: " + JSON.stringify(position.coords) + " " + position.cords);
+    
     // Actualizando información
     last_latitude = position.coords.latitude;
     last_longitude = position.coords.longitude;
@@ -272,7 +271,7 @@ function updateMap() {
       
       user_layer = buffer_user_layer;
       fragment_layer = buffer_fragment_layer;
-      alert("Actualizado: " + first_update);
+      
       updating = false;
     }
     

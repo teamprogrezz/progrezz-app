@@ -22,9 +22,9 @@ var GeolocationUtils = {};
   
   namespace.Config = {
     
-    ENABLE_HIGH_ACCURACY: false,
-    TIMEOUT: 15000, // ms
-    MAXIMUM_AGE: 30000 // ms
+    ENABLE_HIGH_ACCURACY: true,
+    TIMEOUT: 20000, // ms
+    MAXIMUM_AGE: 0 // ms
   }
   
   namespace.distanceTwoGeoPoints = function(lat1, lon1, lat2, lon2) {
