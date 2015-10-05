@@ -146,7 +146,7 @@ var ServerRequest = {};
     request.request( request_json );   
   }
   
-  namespace.userProfile = function(onComplete, onError) {
+  namespace.collectFragment = function(frag_uuid, onComplete, onError) {
     
     'use strict';
     
@@ -154,8 +154,9 @@ var ServerRequest = {};
     var request_json = RESTRequest.getTemplateRequest();
     
     // Tipo de petición y usuario
-    request_json.request.type = "user_profile";
+    request_json.request.type = "user_collect_message_fragment";
     request_json.request.data.user_id = LocalStorage.getUserID();
+    request_json.request.data.frag_uuid = frag_uuid;
     
     // Funciones de completado, error y finalización
     request.onComplete = onComplete;
