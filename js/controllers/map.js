@@ -69,7 +69,7 @@ function updateMap() {
       return;
     }
     alert("Actualizando: " + first_update);
-    alert("Coords: " + JSON.stringify(position));
+    alert("Coords: " + JSON.stringify(position.coords) + " " + position.cords);
     // Actualizando información
     last_latitude = position.coords.latitude;
     last_longitude = position.coords.longitude;
