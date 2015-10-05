@@ -77,10 +77,10 @@ function initViewer() {
                 type: 'basic',
                 onSelect: function() {
                   alert("Capturado");
-                  ServerRequest.collectFragment(key, function() {
+                  /*ServerRequest.collectFragment(key, function() {
                     alert("Pinguino");
                     alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
-                  });
+                  });*/
                 },
                 collectable: true
               };
