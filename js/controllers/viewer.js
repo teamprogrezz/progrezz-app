@@ -84,7 +84,7 @@ function initViewer() {
                 },
                 collectable: true
               };
-              
+              alert(JSON.stringify(options));
               ARViewer.addObject(options);
             });
           };
