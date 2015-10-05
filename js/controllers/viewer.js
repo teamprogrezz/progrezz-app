@@ -60,22 +60,6 @@ function initViewer() {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
                 onSelect: function() {
-                  ServerRequest.collectFragment(key, function() {
-                    alert(">> Fragmento del Sistema Capturado <<");
-                  });
-                },
-                collectable: true
-              };
-              
-              ARViewer.addObject(options);
-            });
-            
-            $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
-              
-              var options = {
-                coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
-                type: 'basic',
-                onSelect: function() {
                   alert("Capturado");
                   /*ServerRequest.collectFragment(key, function() {
                     alert("Pinguino");
@@ -85,6 +69,22 @@ function initViewer() {
                 collectable: true
               };
               alert(JSON.stringify(options));
+              ARViewer.addObject(options);
+            });
+            
+            $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
+              
+              var options = {
+                coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
+                type: 'basic',
+                onSelect: function() {
+                  ServerRequest.collectFragment(key, function() {
+                    alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
+                  });
+                },
+                collectable: true
+              };
+              
               ARViewer.addObject(options);
             });
           };
