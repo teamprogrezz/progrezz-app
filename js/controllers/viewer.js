@@ -59,13 +59,7 @@ function initViewer() {
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
-                onSelect: function() {
-                  alert("Capturado");
-                  /*ServerRequest.collectFragment(key, function() {
-                    alert("Pinguino");
-                    alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
-                  });*/
-                },
+                onSelect: function() {},
                 collectable: true
               };
               alert(JSON.stringify(options));
