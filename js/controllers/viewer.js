@@ -59,10 +59,25 @@ function initViewer() {
               var options = {
                 coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
                 type: 'basic',
-                onSelect: function() {},
+                penguin: function() {
+                  alert("Capturado");
+                  /*ServerRequest.collectFragment(key, function() {
+                    alert("Pinguino");
+                    alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
+                  });*/
+                },
+                onSelect: function() {
+                  alert("Capturado");
+                  /*ServerRequest.collectFragment(key, function() {
+                    alert("Pinguino");
+                    alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
+                  });*/
+                },
                 collectable: true
               };
-              alert(JSON.stringify(options));
+              alert(options.penguin);
+              alert(options.onSelect);
+              alert(JSON.stringify(options.onSelect));
               ARViewer.addObject(options);
             });
             
