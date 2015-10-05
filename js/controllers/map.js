@@ -1,7 +1,7 @@
 
 var WAIT_DELAY = 100 // ms
 var MAX_DISTANCE = 50 // m
-var MAX_TIME = 4500 // ms
+var MAX_TIME = 3000 // ms
 
 var timer;
 var last_latitude, last_longitude;
@@ -67,7 +67,7 @@ function updateMap() {
       updating = false;
       return;
     }
-    
+    alert("Actualizando: " + first_update);
     // Actualizando información
     last_latitude = position.coords.latitude;
     last_longitude = position.coords.longitude;
@@ -270,7 +270,7 @@ function updateMap() {
       
       user_layer = buffer_user_layer;
       fragment_layer = buffer_fragment_layer;
-      
+      alert("Actualizado: " + first_update);
       updating = false;
     }
     
