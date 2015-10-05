@@ -47,68 +47,72 @@ function initViewer() {
     // Petición y localización de los fragmentos cercanos en un radio alrededor del usuario
     function createViewer() {
       
-      ServerRequest.userNearbyMessageFragments(
-        
+      ServerRequest.userMessages(
         function(response_json) {
           
-          var ARViewer = new ARProgrezz.Viewer(); // Construyendo el visor
+          LocalStorage.setUserMessageList(response_json.response.data);
           
-          ARViewer.onInit = function() { // onInit del visor - Adición de los objetos
-            
-            ServerRequest.userMessages(
-              
-              function(response_json) {
-                
-                LocalStorage.setUserMessageList(response_json.response.data);
-                
-                $.each(response_json.response.data.fragments.system_fragments, function(key, content) {
-                  
-                  var found = LocalStorage.fragmentAlreadyFound(content.message.message.uuid, content.fragment_index);
-                  
-                  if (!found) {
-                    var options = {
-                      coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
-                      type: 'basic',
-                      onSelect: function() {
-                        ServerRequest.collectFragment(key, function() {
-                          alert(">> Fragmento del sistema capturado <<");
-                        });
-                      },
-                      collectable: true
-                    };
-                    
-                    ARViewer.addObject(options);
-                  }
-                });
-                
-                $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
-                  
-                  var found = LocalStorage.fragmentAlreadyFound(content.message.message.uuid, content.fragment_index);
-                  
-                  if (!found) {
-                    var options = {
-                      coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
-                      type: 'basic',
-                      onSelect: function() {
-                        ServerRequest.collectFragment(key, function() {
-                          alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
-                        });
-                      },
-                      collectable: true
-                    };
-                    
-                    ARViewer.addObject(options);
-                  }
-                });
-                
-                ServerRequest.userAllowedActions(function(json_response) {
-                  ARViewer.initViewer({range: json_response.response.data.allowed_actions.collect_fragment.radius * 1000}); // Iniciando el visor
-                });
-              }
-            );
-          }
+          initViewer();
         }
       );
+      
+      function initViewer() {
+        
+        ServerRequest.userNearbyMessageFragments(
+          
+          function(response_json) {
+            
+            var ARViewer = new ARProgrezz.Viewer(); // Construyendo el visor
+            
+            ARViewer.onInit = function() { // onInit del visor - Adición de los objetos
+              
+              $.each(response_json.response.data.fragments.system_fragments, function(key, content) {
+                
+                var found = LocalStorage.fragmentAlreadyFound(content.message.message.uuid, content.fragment_index);
+                
+                if (!found) {
+                  var options = {
+                    coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
+                    type: 'basic',
+                    onSelect: function() {
+                      ServerRequest.collectFragment(key, function() {
+                        alert(">> Fragmento del sistema capturado <<");
+                      });
+                    },
+                    collectable: true
+                  };
+                  
+                  ARViewer.addObject(options);
+                }
+              });
+              
+              $.each(response_json.response.data.fragments.user_fragments, function(key, content) {
+                
+                var found = LocalStorage.fragmentAlreadyFound(content.message.message.uuid, content.fragment_index);
+                
+                if (!found) {
+                  var options = {
+                    coords: { latitude: content.geolocation.latitude, longitude: content.geolocation.longitude },
+                    type: 'basic',
+                    onSelect: function() {
+                      ServerRequest.collectFragment(key, function() {
+                        alert(">> Fragmento de '" + content.message.author.author_alias + "' capturado <<");
+                      });
+                    },
+                    collectable: true
+                  };
+                  
+                  ARViewer.addObject(options);
+                }
+              });
+            };
+            
+            ServerRequest.userAllowedActions(function(json_response) {
+              ARViewer.initViewer({range: json_response.response.data.allowed_actions.collect_fragment.radius * 1000}); // Iniciando el visor
+            });
+          }
+        );
+      }
     }
   });
 
