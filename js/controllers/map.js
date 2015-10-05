@@ -57,7 +57,7 @@ $(document).ready(function(){
 function updateMap() {
   
   GeolocationUtils.startWatchPosition(function(position) {
-    
+    alert("Llamada: " + updating);
     if (updating)
       return;
     updating = true;
