@@ -1,8 +1,7 @@
 
 var WAIT_DELAY = 100 // ms
-var UPDATE_DELAY = 2000 // ms
 var MAX_DISTANCE = 50 // m
-var MAX_TIME = 12000 // ms
+var MAX_TIME = 4500 // ms
 
 var timer;
 var last_latitude, last_longitude;
@@ -86,38 +85,60 @@ function updateMap() {
       function(event) { // onResponse
         
         // Ubicar al usuario y los fragmentos
-        locateObjects();
+        updateInfo();
       }
     );
 
+    // Actualización de información relativa a la percepción de fragmentos del usuario
+    function updateInfo() {
+      
+      if (first_update) {
+        ServerRequest.userAllowedActions(
+          function(response_json) {
+            
+            MapTools.Vision.updateUserRange(response_json.response.data.allowed_actions.search_nearby_fragments.radius);
+            MapTools.Vision.updateNoise(response_json.response.data.allowed_actions.search_nearby_fragments.noise);
+            
+            updateMessages();
+          }
+        );
+      }
+      else {
+        updateMessages();
+      }
+    }
+    
+    // Actualización de los mensajes del usuario
+    function updateMessages() {
+      
+      if (first_update) {
+        ServerRequest.userMessages(
+          function(response_json) {
+            
+            LocalStorage.setUserMessageList(response_json.response.data);
+            
+            locateObjects();
+          }
+        );
+      }
+      else {
+        locateObjects();
+      }
+    }
+    
     // Petición y localización de los fragmentos cercanos en un radio alrededor del usuario
     function locateObjects() {
-      ServerRequest.userAllowedActions(
+      ServerRequest.userNearbyMessageFragments(
         function(response_json) {
           
-          MapTools.Vision.updateUserRange(response_json.response.data.allowed_actions.search_nearby_fragments.radius);
-          MapTools.Vision.updateNoise(response_json.response.data.allowed_actions.search_nearby_fragments.noise);
+          // Ubicar los fragmentos cercanos
+          locateFragments(response_json.response.data.fragments);
           
-          ServerRequest.userMessages(
-            function(response_json) {
-              
-              LocalStorage.setUserMessageList(response_json.response.data);
-              
-              ServerRequest.userNearbyMessageFragments(
-                function(response_json) {
-                  
-                  // Ubicar los fragmentos cercanos
-                  locateFragments(response_json.response.data.fragments);
-                  
-                  // Ubicar al usuario
-                  locateUser();
-                  
-                  // Finalizando
-                  endUpdate();
-                }
-              );
-            }
-          );
+          // Ubicar al usuario
+          locateUser();
+          
+          // Finalizando
+          endUpdate();
         }
       );
     }
@@ -225,9 +246,7 @@ function updateMap() {
 
     // Ubicar fragmentos en el mapa
     function locateFragments(fragments) {
-  ServerRequest.userMessages(function(response_json) {
-    LocalStorage.setUserMessageList(response_json.response.data);
-  });
+      
       // Obtener coordenadas de los fragmentos, asociados al mensaje que pertenecen
       var system_messages = structureFragmentsInfo(fragments.system_fragments);
       var user_messages = structureFragmentsInfo(fragments.user_fragments);
