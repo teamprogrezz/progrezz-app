@@ -5,6 +5,7 @@ var MAX_TIME = 3000 // ms
 
 var timer;
 var last_latitude, last_longitude;
+var user_layer, fragment_layer;
 var updating = false;
 var first_update = true;
 
@@ -57,7 +58,7 @@ $(document).ready(function(){
 function updateMap() {
   
   GeolocationUtils.startWatchPosition(function(position) {
-    alert("Llamada: " + updating);
+    
     if (updating)
       return;
     updating = true;
@@ -68,6 +69,7 @@ function updateMap() {
       return;
     }
     alert("Actualizando: " + first_update);
+    alert("Coords: " + JSON.stringify(position));
     // Actualizando información
     last_latitude = position.coords.latitude;
     last_longitude = position.coords.longitude;
